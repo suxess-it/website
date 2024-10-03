@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://suxess-it.github.io/kubrix/blog</id>
+    <title>kubriX Blog</title>
+    <updated>2024-09-20T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://suxess-it.github.io/kubrix/blog"/>
+    <subtitle>kubriX Blog</subtitle>
+    <icon>https://suxess-it.github.io/kubrix/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[kubriX platform released]]></title>
+        <id>https://suxess-it.github.io/kubrix/blog/kubrix-platform-release</id>
+        <link href="https://suxess-it.github.io/kubrix/blog/kubrix-platform-release"/>
+        <updated>2024-09-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We are thrilled to announce our latest development - kubriX platform!]]></summary>
+        <content type="html"><![CDATA[<p>We are thrilled to announce our latest development - kubriX platform!</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="title">Title<a href="https://suxess-it.github.io/kubrix/blog/kubrix-platform-release#title" class="hash-link" aria-label="Direct link to Title" title="Direct link to Title">​</a></h2>
+<p>blabla</p>]]></content>
+        <author>
+            <name>Philipp Achmueller</name>
+            <uri>https://github.com/phac008</uri>
+        </author>
+    </entry>
+</feed>
