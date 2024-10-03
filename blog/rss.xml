@@ -9,14 +9,23 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[kubriX platform released]]></title>
+            <title><![CDATA[kubriX platform - released]]></title>
             <link>https://suxess-it.github.io/kubrix/blog/kubrix-platform-release</link>
             <guid>https://suxess-it.github.io/kubrix/blog/kubrix-platform-release</guid>
             <pubDate>Fri, 20 Sep 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[We are thrilled to announce our latest development - kubriX platform!]]></description>
-            <content:encoded><![CDATA[<p>We are thrilled to announce our latest development - kubriX platform!</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="title">Title<a href="https://suxess-it.github.io/kubrix/blog/kubrix-platform-release#title" class="hash-link" aria-label="Direct link to Title" title="Direct link to Title">​</a></h2>
-<p>blabla</p>]]></content:encoded>
+            <description><![CDATA[We're thrilled to announce the official launch of our latest prodcut - kubriX platform!]]></description>
+            <content:encoded><![CDATA[<p>We're thrilled to announce the official launch of our latest prodcut - kubriX platform!</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="introducing-kubrix-our-exciting-new-platform">Introducing Kubrix: Our Exciting New Platform!<a href="https://suxess-it.github.io/kubrix/blog/kubrix-platform-release#introducing-kubrix-our-exciting-new-platform" class="hash-link" aria-label="Direct link to Introducing Kubrix: Our Exciting New Platform!" title="Direct link to Introducing Kubrix: Our Exciting New Platform!">​</a></h2>
+<p>After months of hard work and dedication, we’re excited to share something that truly reflects our passion for innovation and our commitment to delivering open-source solutions.</p>
+<h1>What is kubriX?</h1>
+<p>kubriX is designed to streamline and enhance your workflow, making it easier than ever to deliver your software. Our curated set of tools is tested for compatibility across the entire application lifecycle. Whether you’re a small team or a large organization, kubriX adapts to your needs, helping you stay focused and productive.</p>
+<h1>Why we love kubriX?</h1>
+<p>From the very beginning, we poured our hearts into developing kubriX. We’re genuinely excited about how it empowers users to achieve their goals more efficiently. The positive feedback we’ve received from early testers has only fueled our enthusiasm. It’s rewarding to see our vision come to life!</p>
+<h1>a Commitment to Evolution</h1>
+<p>At our core, we believe that great products are never truly finished. With kubriX, we’re committed to continuous improvement. We have a roadmap filled with exciting updates and new features based on user feedback and industry trends. Your input will play a crucial role in shaping the future of the platform, and we can’t wait to see where it takes us!</p>
+<h1>Join Us on This Journey</h1>
+<p>We invite you to explore the kubrix Platform and discover its capabilities for yourself. As we embark on this journey, we’re excited to share updates, tips, and success stories from our customers and community.</p>
+<p>Together, we can make kubriX even better!</p>]]></content:encoded>
         </item>
     </channel>
 </rss>

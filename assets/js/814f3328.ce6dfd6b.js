@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkkubrix=self.webpackChunkkubrix||[]).push([[472],{5513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"kubriX platform released","permalink":"/kubrix/blog/kubrix-platform-release","unlisted":false,"date":"2024-09-20T00:00:00.000Z"}]}')}}]);
