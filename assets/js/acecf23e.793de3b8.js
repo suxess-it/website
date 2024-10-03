@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkkubrix=self.webpackChunkkubrix||[]).push([[903],{1912:s=>{s.exports=JSON.parse('{"blogBasePath":"/kubrix/blog","blogTitle":"Blog","authorsListPath":"/kubrix/blog/authors"}')}}]);
