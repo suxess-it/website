@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkubrix=self.webpackChunkkubrix||[]).push([[67],{9187:s=>{s.exports=JSON.parse('{"tags":[{"label":"Install","permalink":"/docs/tags/install","count":2},{"label":"Sandbox","permalink":"/docs/tags/sandbox","count":2}]}')}}]);
