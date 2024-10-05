@@ -1,2 +1,4 @@
 User-Agent: *
 Allow: /
+
+Sitemap: https://kubrix.io/sitemap.xml
