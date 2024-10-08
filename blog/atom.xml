@@ -2,11 +2,47 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kubrix.io/blog</id>
     <title>kubriX Blog</title>
-    <updated>2024-09-20T00:00:00.000Z</updated>
+    <updated>2024-10-08T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kubrix.io/blog"/>
     <subtitle>kubriX Blog</subtitle>
     <icon>https://kubrix.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Treat your platform as a product]]></title>
+        <id>https://kubrix.io/blog/team-topologies-platform-engineering</id>
+        <link href="https://kubrix.io/blog/team-topologies-platform-engineering"/>
+        <updated>2024-10-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Team Topologies gave the platform engineering topic a huge momentum in 2019. And it hasn't lost its popularity since then.]]></summary>
+        <content type="html"><![CDATA[<p><a href="http://teamtopologies.com/" target="_blank" rel="noopener noreferrer">Team Topologies</a> gave the platform engineering topic a huge momentum in 2019. And it hasn't lost its popularity since then.</p>
+<p>As Team Topologies say:</p>
+<blockquote>
+<p>Organizations that adopt a "<a href="https://teamtopologies.com/platform-engineering" target="_blank" rel="noopener noreferrer">platform as a product</a>" approach can fundamentally transform and accelerate the value realization from their digital product development.</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-are-the-benefits">What are the benefits?<a href="https://kubrix.io/blog/team-topologies-platform-engineering#what-are-the-benefits" class="hash-link" aria-label="Direct link to What are the benefits?" title="Direct link to What are the benefits?">​</a></h2>
+<p>Implementing this platform principles leads to the following positive business impacts which are consistently seen:</p>
+<ul>
+<li>
+<p>30% faster transformation implementation with Team Topologies, enabling quicker time-to-market for new offerings.</p>
+</li>
+<li>
+<p>25% reduction in context switching and a subsequent 20% increase in overall productivity among teams adopting Team Topologies.</p>
+</li>
+<li>
+<p>40% drop in deployment failures and a 35% decrease in mean time to recovery, bolstering organizational resilience through the adoption of Team Topologies.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="which-technology-should-we-use">Which technology should we use?<a href="https://kubrix.io/blog/team-topologies-platform-engineering#which-technology-should-we-use" class="hash-link" aria-label="Direct link to Which technology should we use?" title="Direct link to Which technology should we use?">​</a></h2>
+<p>The <a href="https://teamtopologies.com/platform-manifesto" target="_blank" rel="noopener noreferrer">platform manifest</a> makes it clear that it is not about technology in the first place. Still, Kubernetes is widely being used as a base platform for very good reasons. It perfectly abstracts infrastructure and has a flexible API. However, it is not a software delivery platform by itself. Companies still need to build their platform on top of this base platform - a thing which is called nowadays "Internal Developer Platform" (IDP).</p>
+<p>The building blocks of these platforms are often projects of the CNCF landscape or also commercial products in the cloud-native space.</p>
+<p>However, CNCF doesn't give you advices which tools to use, and there are a lot! So it is still the companies job to evaluate projects and products, decide which ones are trustworthy and can help. Then they need to combine, configure and integrate them in a way that it feels like one curated product with high dev experience.</p>
+<h1>Build or buy - or both?</h1>
+<p>Building such a IDP takes time, expertise and experience - so it is worth to look for a company which helps you building such a product - an IDP distribution!</p>
+<p>kubriX is a curated, opinionated, yet highly flexible IDP distribution, build from predefined bricks for Kubernetes.</p>]]></content>
+        <author>
+            <name>Johannes Kleinlercher</name>
+            <uri>https://github.com/jkleinlercher</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[kubriX platform - released]]></title>
         <id>https://kubrix.io/blog/kubrix-platform-release</id>
