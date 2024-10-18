@@ -8,7 +8,7 @@
     <subtitle>kubriX Blog</subtitle>
     <icon>https://kubrix.io/img/favicon.ico</icon>
     <entry>
-        <title type="html"><![CDATA[kubriX quality checks your headaches, time and costs]]></title>
+        <title type="html"><![CDATA[Reduce headaches, time and costs with kubriX]]></title>
         <id>https://kubrix.io/blog/benefits-idp-distribution-quality-gates</id>
         <link href="https://kubrix.io/blog/benefits-idp-distribution-quality-gates"/>
         <updated>2024-10-18T00:00:00.000Z</updated>
@@ -26,7 +26,7 @@ and our quality checks dramatically reduce your efforts and deployment risks.</p
 I don't know wether you are a person who really evaluates changelogs before updates,
 but also if you did read the <a href="https://github.com/grafana/mimir/blob/main/operations/helm/charts/mimir-distributed/CHANGELOG.md#550" target="_blank" rel="noopener noreferrer">Changelog for 5.5.0</a>, you won't recognize any breaking changes.</p>
 <p>However, the first time you would probably recognize a problem is that your Grafana Mimir ArgoCD application stays OutOfSync forever. If you take a closer look to the diff, you will see:</p>
-<p><img decoding="async" loading="lazy" src="https://github.com/user-attachments/assets/0786722a-7403-40bf-8b17-4504cdc2ee2f" alt="image" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://github.com/user-attachments/assets/3c0bb034-8827-4c25-81b5-8b67c99b4eed" alt="image" class="img_ev3q"></p>
 <p>green (right side) is desired state, left is current state.</p>
 <p>You then probably ask yourself and your team mates why the hack this app doesn't sync anymore. Are there some conflicts with another app overriding this configuration? Is the Grafana Agent Operator overriding the GrafanaAgent instance? Is your GrafanaAgent CRD not compatible with this new GrafanaAgent after update? Where is this CRD defined? Do I need to have a look at new sync options ArgoCD provides (and they provide a lot of them)?</p>
 <p>Beliefe me, this problem will take you hours even though you are very experiences, unless you have the right guess in the first place.</p>
