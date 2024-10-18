@@ -2,11 +2,48 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kubrix.io/blog</id>
     <title>kubriX Blog</title>
-    <updated>2024-10-08T00:00:00.000Z</updated>
+    <updated>2024-10-18T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kubrix.io/blog"/>
     <subtitle>kubriX Blog</subtitle>
     <icon>https://kubrix.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[kubriX quality checks your headaches, time and costs]]></title>
+        <id>https://kubrix.io/blog/benefits-idp-distribution-quality-gates</id>
+        <link href="https://kubrix.io/blog/benefits-idp-distribution-quality-gates"/>
+        <updated>2024-10-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[An IDP often consists of several products or opensource projects. Updating those components is one thing your platform team needs to do regularly for several reasons:]]></summary>
+        <content type="html"><![CDATA[<p>An IDP often consists of several products or opensource projects. Updating those components is one thing your platform team needs to do regularly for several reasons:</p>
+<ul>
+<li>get the newest features</li>
+<li>get bug fixes to increase stability</li>
+<li>get security fixes to fulfill your vulnerability mgmt</li>
+</ul>
+<p>Those updates can be time-consuming and error-prone. However, kubriX keeps your platform up-to-date
+and our quality checks dramatically reduce your efforts and deployment risks.</p>
+<p>As the following real life example shows, sometimes updates can be really hard.</p>
+<p>Recently a new version from <a href="https://github.com/grafana/helm-charts/releases/tag/mimir-distributed-5.5.0" target="_blank" rel="noopener noreferrer">Grafana Mimir Helm-Chart 5.5.0</a> was released.
+I don't know wether you are a person who really evaluates changelogs before updates,
+but also if you did read the <a href="https://github.com/grafana/mimir/blob/main/operations/helm/charts/mimir-distributed/CHANGELOG.md#550" target="_blank" rel="noopener noreferrer">Changelog for 5.5.0</a>, you won't recognize any breaking changes.</p>
+<p>However, the first time you would probably recognize a problem is that your Grafana Mimir ArgoCD application stays OutOfSync forever. If you take a closer look to the diff, you will see:</p>
+<p><img decoding="async" loading="lazy" src="https://github.com/user-attachments/assets/0786722a-7403-40bf-8b17-4504cdc2ee2f" alt="image" class="img_ev3q"></p>
+<p>green (right side) is desired state, left is current state.</p>
+<p>You then probably ask yourself and your team mates why the hack this app doesn't sync anymore. Are there some conflicts with another app overriding this configuration? Is the Grafana Agent Operator overriding the GrafanaAgent instance? Is your GrafanaAgent CRD not compatible with this new GrafanaAgent after update? Where is this CRD defined? Do I need to have a look at new sync options ArgoCD provides (and they provide a lot of them)?</p>
+<p>Beliefe me, this problem will take you hours even though you are very experiences, unless you have the right guess in the first place.</p>
+<p>The problem was, that the <a href="https://github.com/grafana/agent/blob/69e7872651069b20cf9b8b67d9d210c1db245885/operations/agent-static-operator/crds/monitoring.grafana.com_grafanaagents.yaml" target="_blank" rel="noopener noreferrer">GrafanaAgent CRD</a> supports the attribute <code>topologySpreadConstraints</code>, but the indentation in the GrafanaAgent CR was wrong, so it was not compliant to the GrafanaAgent CRD spec.</p>
+<p>However, why did ArgoCD just show a OutOfSync problem? This is actually an <a href="https://github.com/argoproj/argo-cd/issues/16817" target="_blank" rel="noopener noreferrer">open issue in ArgoCD</a>.</p>
+<p>When you apply the manifests manually, you would see</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">Error from server (BadRequest): error when creating "STDIN": GrafanaAgent in version "v1alpha1" cannot be handled as a GrafanaAgent: strict decoding error: unknown field "spec.containers[1].topologySpreadConstraints"</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">and indeed topologySpreadConstraints is not a valid attribute inside containers attribute.</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h1>The benefits of kubriX</h1>
+<p>We do those update tests for you already and will check already lots of things what otherwise your platform team needs to do. Only when our quality gates show a green light we integrate those new versions in our kubriX platform.</p>
+<p>When we recognize problems like this above, we will <a href="https://github.com/grafana/mimir/issues/9638" target="_blank" rel="noopener noreferrer">open an issue</a> on the original upstream project and help to <a href="https://github.com/grafana/mimir/pull/9670" target="_blank" rel="noopener noreferrer">solve this problem</a> together with the maintainers.</p>
+<p>Only for this problem above you will save at least 3-4 days updates, troubleshooting, communication with the community, and fixing the updates.</p>
+<p>You can see our real life tests and investigations in this <a href="https://github.com/suxess-it/kubriX/pull/722#issuecomment-2412002619" target="_blank" rel="noopener noreferrer">renovate PR</a></p>]]></content>
+        <author>
+            <name>Johannes Kleinlercher</name>
+            <uri>https://github.com/jkleinlercher</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Treat your platform as a product]]></title>
         <id>https://kubrix.io/blog/team-topologies-platform-engineering</id>
