@@ -2,11 +2,33 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kubrix.io/blog</id>
     <title>kubriX Blog</title>
-    <updated>2024-10-18T00:00:00.000Z</updated>
+    <updated>2024-10-25T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kubrix.io/blog"/>
     <subtitle>kubriX Blog</subtitle>
     <icon>https://kubrix.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Accelerating Internal Developer Platforms with kubriX]]></title>
+        <id>https://kubrix.io/blog/why-idp-distribution</id>
+        <link href="https://kubrix.io/blog/why-idp-distribution"/>
+        <updated>2024-10-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[kubriX is a curated, opinionated, and highly flexible distribution for Internal Developer Platforms (IDPs). But why do platform teams need an IDP distribution in the first place?]]></summary>
+        <content type="html"><![CDATA[<p>kubriX is a curated, opinionated, and highly flexible distribution for Internal Developer Platforms (IDPs). But why do platform teams need an IDP distribution in the first place?</p>
+<p>If you recognize that platform engineering and modern platforms—often referred to as Internal Developer Platforms—can help you deliver exceptional digital products faster, more securely, reliably, and at a lower cost, the next question is: how do you get started?</p>
+<p>Building an Internal Developer Platform (IDP) requires many building blocks. Nowadays, the foundational operational platform is typically Kubernetes or OpenShift, as it provides an excellent abstraction layer for the underlying infrastructure, allows for full automation through APIs, and is highly extensible. However, this foundation alone isn’t sufficient to fully leverage the benefits of a platform.</p>
+<p>To address this, an entire ecosystem of projects and products has emerged under the Cloud Native Computing Foundation (CNCF), each catering to various aspects like security, observability, cost management, application delivery, and more.</p>
+<p>As a platform or infrastructure team within an organization, you're often faced with a mountain of new—and sometimes quite complex—tasks, along with a completely new way of managing infrastructure and applications. You need to evaluate tools, understand how to install and maintain them, integrate them together, and configure everything so that it functions as intended.</p>
+<p>This process can take years before your organization has a fully operational platform that is embraced by developers and engineers and runs smoothly.</p>
+<p>With kubriX, we can shorten this timeline from years to weeks or just a few months. We pre-select the tools, integrate them, and configure them to work seamlessly together, creating a comprehensive solution. Our extensive expertise in software delivery, security, compliance, and observability ensures that these tools provide real value to the organization, adhering to best practices and state-of-the-art standards. In essence, kubriX makes numerous open-source projects "production and enterprise ready" for your platform.</p>
+<p>Moreover, kubriX reduces ongoing operational costs associated with platform management. We handle component updates, quality assurance, and vulnerability management while also alerting you to breaking changes. When bugs are discovered, we often take on the communication with project maintainers, which can be a significant burden for platform teams.</p>
+<p>Despite its comprehensive nature, kubriX remains highly flexible and customizable to meet your specific needs. If you already have an observability tool in place, for instance, we can integrate it and disable our default component.</p>
+<p>Much like Red Hat provides a Linux distribution that saves you the hassle of compiling the kernel and selecting necessary additional tools for your operating system, kubriX offers an IDP distribution that can be quickly and easily installed on your infrastructure, allowing you to enjoy the benefits of a modern platform right away.</p>
+<p>As for the name: we refer to these predefined, curated components of our platform as "Bricks," and that’s how we arrived at the product name "kubriX."</p>]]></content>
+        <author>
+            <name>Johannes Kleinlercher</name>
+            <uri>https://github.com/jkleinlercher</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Reduce risks, time and costs with kubriX]]></title>
         <id>https://kubrix.io/blog/benefits-idp-distribution-quality-gates</id>
