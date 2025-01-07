@@ -2,11 +2,33 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kubrix.io/blog</id>
     <title>kubriX Blog</title>
-    <updated>2024-10-25T00:00:00.000Z</updated>
+    <updated>2024-12-19T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kubrix.io/blog"/>
     <subtitle>kubriX Blog</subtitle>
     <icon>https://kubrix.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[kubriX latest oss update issues]]></title>
+        <id>https://kubrix.io/blog/kubriX-oss-updates-quality-gates</id>
+        <link href="https://kubrix.io/blog/kubriX-oss-updates-quality-gates"/>
+        <updated>2024-12-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[At kubriX, we hold a strong belief in the transformative power of Open Source software. Our commitment goes beyond just using these tools — we actively contribute to the Open Source projects that drive our platform forward.]]></summary>
+        <content type="html"><![CDATA[<p>At kubriX, we hold a strong belief in the transformative power of Open Source software. Our commitment goes beyond just using these tools — we actively contribute to the Open Source projects that drive our platform forward.</p>
+<p>However, as anyone familiar with Open Source knows, new releases sometimes come with unexpected bugs. This is a natural part of the development process, and it’s up to the community to address and improve these issues. As the saying goes, "Open Source software is free as in freedom, not free as in free beer."</p>
+<p>kubriX is designed to help platform teams manage these risks and reduce the effort required to update OSS platform services. Our goal is to make platform updates smooth and hassle-free for our customers.</p>
+<p>Here are two recent examples of how kubriX has proactively supported our customers during Open Source updates:</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="argocd-v2130-bug-mitigation">ArgoCD v2.13.0 Bug Mitigation<a href="https://kubrix.io/blog/kubriX-oss-updates-quality-gates#argocd-v2130-bug-mitigation" class="hash-link" aria-label="Direct link to ArgoCD v2.13.0 Bug Mitigation" title="Direct link to ArgoCD v2.13.0 Bug Mitigation">​</a></h2>
+<p>The release of ArgoCD v2.13.0 introduced a bug where Pod Disruption Budgets (PDBs) led to degraded applications. This issue, documented in <a href="https://github.com/argoproj/argo-cd/issues/20171" target="_blank" rel="noopener noreferrer">this GitHub issue</a>, had the potential to disrupt application health. At kubriX, we took a proactive approach, ensuring our customers’ environments were not affected. Instead of updating directly to v2.13.0, we held back until the release of ArgoCD v2.13.1, which included a fix for the PDB issue. By doing so, we saved our customers from experiencing this problem and the time-consuming process of troubleshooting it.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="grafana-tempo-v261-breaking-change">Grafana Tempo v2.6.1 Breaking Change<a href="https://kubrix.io/blog/kubriX-oss-updates-quality-gates#grafana-tempo-v261-breaking-change" class="hash-link" aria-label="Direct link to Grafana Tempo v2.6.1 Breaking Change" title="Direct link to Grafana Tempo v2.6.1 Breaking Change">​</a></h2>
+<p>Another instance occurred with the release of Grafana Tempo v2.6.1. This update introduced a breaking change in the configuration for tempo queries. While the Grafana Tempo Helm Chart v1.14.0 updated to the new tempo binary (v2.6.1), it still assumed compatibility with the previous configuration. As a result, deployments failed to start correctly, causing a complete service disruption for affected users.</p>
+<p>kubriX identified this issue early and took swift action. We decided to withhold updates to the new Helm Chart version until a proper fix was available. In the meantime, we have been actively supporting the maintainers of Grafana Tempo to <a href="https://github.com/grafana/helm-charts/issues/3417" target="_blank" rel="noopener noreferrer">resolve the issue</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="how-kubrix-supports-your-platform-stack">How kubriX Supports Your Platform Stack<a href="https://kubrix.io/blog/kubriX-oss-updates-quality-gates#how-kubrix-supports-your-platform-stack" class="hash-link" aria-label="Direct link to How kubriX Supports Your Platform Stack" title="Direct link to How kubriX Supports Your Platform Stack">​</a></h2>
+<p>These examples illustrate why kubriX is a vital partner in maintaining and updating your platform stack. We go beyond providing software updates — we provide proactive support, risk mitigation, and community contributions that ensure your platform runs smoothly. With kubriX, your platform teams can focus on innovation instead of firefighting unexpected issues from OSS updates.</p>]]></content>
+        <author>
+            <name>Johannes Kleinlercher</name>
+            <uri>https://github.com/jkleinlercher</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Accelerating Internal Developer Platforms with kubriX]]></title>
         <id>https://kubrix.io/blog/why-idp-distribution</id>
