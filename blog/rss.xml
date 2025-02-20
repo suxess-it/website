@@ -4,10 +4,59 @@
         <title>kubriX Blog</title>
         <link>https://kubrix.io/blog</link>
         <description>kubriX Blog</description>
-        <lastBuildDate>Thu, 19 Dec 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 20 Feb 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Announcing KubriX 2.0 – A Major Leap Forward!]]></title>
+            <link>https://kubrix.io/blog/kubriX-2.0-released</link>
+            <guid>https://kubrix.io/blog/kubriX-2.0-released</guid>
+            <pubDate>Thu, 20 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[We are thrilled to announce the release of KubriX IDP-Distribution 2.0! Following the successful launch of version 1.0 in January, our February release takes the platform to the next level with game-changing features, enhanced automation, and seamless enterprise integration.]]></description>
+            <content:encoded><![CDATA[<p>We are thrilled to announce the release of <strong>KubriX IDP-Distribution 2.0</strong>! Following the successful launch of version 1.0 in January, our February release takes the platform to the next level with game-changing features, enhanced automation, and seamless enterprise integration.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="whats-new-in-kubrix-20">What’s New in KubriX 2.0?<a href="https://kubrix.io/blog/kubriX-2.0-released#whats-new-in-kubrix-20" class="hash-link" aria-label="Direct link to What’s New in KubriX 2.0?" title="Direct link to What’s New in KubriX 2.0?">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="cutting-edge-platform-updates">Cutting-Edge Platform Updates<a href="https://kubrix.io/blog/kubriX-2.0-released#cutting-edge-platform-updates" class="hash-link" aria-label="Direct link to Cutting-Edge Platform Updates" title="Direct link to Cutting-Edge Platform Updates">​</a></h3>
+<p>KubriX 2.0 brings <strong>dozens of updates to the latest and greatest versions</strong> of our underlying platform services, including ArgoCD, Crossplane, Grafana, Mimir, Tempo, Vault, Velero, and more. Expect improved stability, performance, and security with this release.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="seamless-hub--spoke-support-for-developers">Seamless Hub &amp; Spoke Support for Developers<a href="https://kubrix.io/blog/kubriX-2.0-released#seamless-hub--spoke-support-for-developers" class="hash-link" aria-label="Direct link to Seamless Hub &amp; Spoke Support for Developers" title="Direct link to Seamless Hub &amp; Spoke Support for Developers">​</a></h3>
+<p>We’ve made <strong>Hub &amp; Spoke topologies first-class citizens</strong> in KubriX, simplifying application deployment and team collaboration across different environments.</p>
+<ul>
+<li>
+<p>Out-of-the-box support for Hub &amp; Spoke setups across team onboarding, app onboarding, and app delivery workflows.</p>
+</li>
+<li>
+<p>Cluster label-based targeting, allowing you to select target clusters effortlessly.</p>
+</li>
+<li>
+<p>Automatic propagation of cluster-specific information (like ingress domains) to apps, removing the need for developers to handle complex configurations.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="argocd-sso-with-keycloak--now-built-in">ArgoCD SSO with Keycloak – Now Built-In<a href="https://kubrix.io/blog/kubriX-2.0-released#argocd-sso-with-keycloak--now-built-in" class="hash-link" aria-label="Direct link to ArgoCD SSO with Keycloak – Now Built-In" title="Direct link to ArgoCD SSO with Keycloak – Now Built-In">​</a></h3>
+<p>Identity management just got easier! <strong>ArgoCD SSO with Keycloak</strong> is now integrated out of the box, ensuring a seamless authentication experience for your teams.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-does-this-matter">Why Does This Matter?<a href="https://kubrix.io/blog/kubriX-2.0-released#why-does-this-matter" class="hash-link" aria-label="Direct link to Why Does This Matter?" title="Direct link to Why Does This Matter?">​</a></h2>
+<p>For enterprises managing multiple clusters and applications, a <strong>Hub &amp; Spoke architecture</strong> is the gold standard. In KubriX 2.0:</p>
+<ul>
+<li>
+<p>The <strong>central hub</strong> hosts core services like KubriX Delivery, KubriX Observability, and KubriX Portal.</p>
+</li>
+<li>
+<p>The <strong>spokes</strong> run customer applications and KubriX spoke agents, providing clear separation of concerns and scalable operations.</p>
+</li>
+</ul>
+<p>Without KubriX, deploying applications across multiple environments can mean <strong>complex and repetitive configurations</strong>. Developers often need to manage tedious details like cluster names, API URLs, and ingress domains manually.</p>
+<p>With <strong>KubriX 2.0, developers only define app deployment stages (e.g., test → nonprod, QA → nonprod, prod → prod) in their GitOps repo — everything else happens automatically</strong>. This removes unnecessary complexity, boosting developer productivity and streamlining delivery pipelines.</p>
+<p>And of course, <strong>KubriX Observability and Security</strong> detect new applications automatically, providing instant insights via <strong>Grafana dashboards</strong>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-get-started">How to Get Started<a href="https://kubrix.io/blog/kubriX-2.0-released#how-to-get-started" class="hash-link" aria-label="Direct link to How to Get Started" title="Direct link to How to Get Started">​</a></h2>
+<ul>
+<li>
+<p>Existing <strong>KubriX-Prime customers</strong> will receive <strong>KubriX 2.0 automatically</strong> through their Git update channel and can apply the upgrade today.</p>
+</li>
+<li>
+<p>Interested in KubriX? <a href="https://kubrix.io/plans#contact" target="_blank" rel="noopener noreferrer">Contact us</a> to learn more and leave us a ⭐ on our <a href="https://github.com/suxess-it/kubriX" target="_blank" rel="noopener noreferrer">GitHub repo</a>!</p>
+</li>
+</ul>
+<p>Experience <strong>faster, smarter, and more efficient application delivery with KubriX 2.0</strong> — your cloud-native developer platform, redefined!</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[kubriX latest oss update issues]]></title>
             <link>https://kubrix.io/blog/kubriX-oss-updates-quality-gates</link>
