@@ -4,10 +4,82 @@
         <title>kubriX Blog</title>
         <link>https://kubrix.io/blog</link>
         <description>kubriX Blog</description>
-        <lastBuildDate>Thu, 20 Feb 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 23 Mar 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Introducing KubriX 2.1 – Smarter Automation, Stronger Security, Seamless Scaling!]]></title>
+            <link>https://kubrix.io/blog/kubriX-2.1-released</link>
+            <guid>https://kubrix.io/blog/kubriX-2.1-released</guid>
+            <pubDate>Sun, 23 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Just one month after our major KubriX 2.0 release, we’re back with another power-packed upgrade: KubriX IDP-Distribution 2.1 is here!]]></description>
+            <content:encoded><![CDATA[<p>Just one month after our major <strong>KubriX 2.0</strong> release, we’re back with another power-packed upgrade: <strong>KubriX IDP-Distribution 2.1</strong> is here!</p>
+<p>This release brings enhanced automation, improved platform stability, stronger team isolation, and security features that help your application teams move faster — with confidence.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="whats-new-in-kubrix-21">What’s New in KubriX 2.1?<a href="https://kubrix.io/blog/kubriX-2.1-released#whats-new-in-kubrix-21" class="hash-link" aria-label="Direct link to What’s New in KubriX 2.1?" title="Direct link to What’s New in KubriX 2.1?">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="automation-automation-automation">Automation, Automation, Automation<a href="https://kubrix.io/blog/kubriX-2.1-released#automation-automation-automation" class="hash-link" aria-label="Direct link to Automation, Automation, Automation" title="Direct link to Automation, Automation, Automation">​</a></h3>
+<p>We believe in empowering teams to focus on building, not configuring. That’s why we’ve taken automation to the next level:</p>
+<ul>
+<li><strong>ArgoCD repo credentials</strong> are now created automatically for your team repos.</li>
+<li><strong>Spoke cluster registration</strong> in Vault is fully automated, along with <strong>SecretStore</strong> creation in each team’s namespace. Teams just need to define <code>ExternalSecret</code> resources — no more manual Vault configuration!</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="rock-solid-stability">Rock-Solid Stability<a href="https://kubrix.io/blog/kubriX-2.1-released#rock-solid-stability" class="hash-link" aria-label="Direct link to Rock-Solid Stability" title="Direct link to Rock-Solid Stability">​</a></h3>
+<p>We’ve tightened the bolts to ensure your GitOps flows are more robust and predictable:</p>
+<ul>
+<li><strong>Crossplane health checks</strong> are now fully integrated into ArgoCD’s status evaluations.</li>
+<li><strong>ArgoCD application health checks</strong> have been extended to verify complete sync status — especially useful when using sync-waves.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="stronger-team-isolation">Stronger Team Isolation<a href="https://kubrix.io/blog/kubriX-2.1-released#stronger-team-isolation" class="hash-link" aria-label="Direct link to Stronger Team Isolation" title="Direct link to Stronger Team Isolation">​</a></h3>
+<p>Secure, scalable, and clean boundaries between teams are key to platform success. With 2.1, we’re one step closer to full multi-tenancy:</p>
+<ul>
+<li>Each team now gets <strong>dedicated AppSet access tokens</strong>, eliminating the need for organization-wide tokens.</li>
+<li><strong>Vault roles and policies</strong> are team-specific, ensuring secrets stay where they belong.</li>
+<li><strong>Kargo Git credentials</strong> are scoped per team, isolating promotion pipelines to their respective repositories.</li>
+</ul>
+<p><strong>Sneak peek: KubriX 3.0 will bring even more powerful team isolation features!</strong></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="built-in-security">Built-In Security<a href="https://kubrix.io/blog/kubriX-2.1-released#built-in-security" class="hash-link" aria-label="Direct link to Built-In Security" title="Direct link to Built-In Security">​</a></h3>
+<p>Security shouldn’t be optional—it should be default. KubriX 2.1 introduces:</p>
+<ul>
+<li>A <strong>restructured Kyverno policy architecture</strong></li>
+<li>The ability to <strong>auto-generate deny-all network policies</strong> to enforce micro-segmentation</li>
+</ul>
+<p>Stay tuned — more default policies are coming in future releases to lock down your platform effortlessly.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="updates-galore">Updates Galore<a href="https://kubrix.io/blog/kubriX-2.1-released#updates-galore" class="hash-link" aria-label="Direct link to Updates Galore" title="Direct link to Updates Galore">​</a></h3>
+<p>We’ve refreshed the entire KubriX stack with the latest upstream Helm charts, so you’re always running the latest and greatest:</p>
+<ul>
+<li>falco, grafana, loki, trivy-operator, kargo</li>
+<li>argo-cd, cert-manager, external-dns, external-secrets</li>
+<li>k8s-monitoring, cost-analyzer, and more</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-this-release-matters">Why This Release Matters<a href="https://kubrix.io/blog/kubriX-2.1-released#why-this-release-matters" class="hash-link" aria-label="Direct link to Why This Release Matters" title="Direct link to Why This Release Matters">​</a></h2>
+<ul>
+<li>
+<p><strong>Instant secrets access:</strong> Teams can immediately use Vault secrets from spoke clusters—no manual config needed.</p>
+</li>
+<li>
+<p><strong>Improved GitOps reliability:</strong> ArgoCD now waits for real readiness before marking apps as healthy.</p>
+</li>
+<li>
+<p><strong>Secure by default:</strong> Automated deny-all network policies and scoped permissions reduce blast radius and human error.</p>
+</li>
+<li>
+<p><strong>Frictionless onboarding:</strong> New teams and clusters can be onboarded and deployed without platform team intervention.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="getting-started-with-kubrix-21">Getting Started with KubriX 2.1<a href="https://kubrix.io/blog/kubriX-2.1-released#getting-started-with-kubrix-21" class="hash-link" aria-label="Direct link to Getting Started with KubriX 2.1" title="Direct link to Getting Started with KubriX 2.1">​</a></h2>
+<ul>
+<li>
+<p>Already a <strong>KubriX Prime</strong> customer? You’ll receive <strong>KubriX 2.1 automatically</strong> via your Git update channel — upgrade today!</p>
+</li>
+<li>
+<p>Curious about KubriX? <a href="https://kubrix.io/plans#contact" target="_blank" rel="noopener noreferrer">Reach out to us</a> to schedule a demo.</p>
+</li>
+<li>
+<p>Love what we’re building? Show your support with a ⭐ on our <a href="https://github.com/suxess-it/kubriX" target="_blank" rel="noopener noreferrer">GitHub repo</a>!</p>
+</li>
+</ul>
+<p>Experience <strong>faster, smarter, and more secure</strong> application delivery with <strong>KubriX 2.1</strong> — your cloud-native developer platform, reimagined.</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Announcing KubriX 2.0 – A Major Leap Forward!]]></title>
             <link>https://kubrix.io/blog/kubriX-2.0-released</link>
