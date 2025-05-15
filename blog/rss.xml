@@ -4,10 +4,71 @@
         <title>kubriX Blog</title>
         <link>https://kubrix.io/blog</link>
         <description>kubriX Blog</description>
-        <lastBuildDate>Sun, 23 Mar 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 15 May 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Introducing KubriX 3.0 - Smarter, Safer, and More Secure Platform Engineering]]></title>
+            <link>https://kubrix.io/blog/kubriX-3.0-released</link>
+            <guid>https://kubrix.io/blog/kubriX-3.0-released</guid>
+            <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[We’re thrilled to announce the release of KubriX 3.0 — our most powerful and enterprise-ready version yet!]]></description>
+            <content:encoded><![CDATA[<p>We’re thrilled to announce the release of KubriX 3.0 — our most powerful and enterprise-ready version yet!</p>
+<p>This release brings granular RBAC with OIDC integration, automated alerting for Kubernetes issues, and a host of internal security upgrades to streamline platform operations at scale.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="whats-new-in-kubrix-30">What’s New in KubriX 3.0?<a href="https://kubrix.io/blog/kubriX-3.0-released#whats-new-in-kubrix-30" class="hash-link" aria-label="Direct link to What’s New in KubriX 3.0?" title="Direct link to What’s New in KubriX 3.0?">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="enterprise-grade-team-isolation-with-oidc--rbac">Enterprise-Grade Team Isolation with OIDC &amp; RBAC<a href="https://kubrix.io/blog/kubriX-3.0-released#enterprise-grade-team-isolation-with-oidc--rbac" class="hash-link" aria-label="Direct link to Enterprise-Grade Team Isolation with OIDC &amp; RBAC" title="Direct link to Enterprise-Grade Team Isolation with OIDC &amp; RBAC">​</a></h3>
+<p>With KubriX 3.0, we’ve introduced centralized identity and access management across all major platform services. Teams and team members are now onboarded with roles like admin, editor, and viewer, giving them access only to what they need — nothing more.</p>
+<p>Team-scoped access now works seamlessly across:</p>
+<ul>
+<li>Backstage</li>
+<li>ArgoCD</li>
+<li>Kargo</li>
+<li>Grafana</li>
+<li>Vault</li>
+<li>MinIO</li>
+</ul>
+<p>This helps enforce least-privilege access and keeps environments clean, focused, and secure — whether you're part of a delivery team or the platform team.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="automatic-alerting-be-informed-when-it-matters">Automatic Alerting: Be Informed When It Matters<a href="https://kubrix.io/blog/kubriX-3.0-released#automatic-alerting-be-informed-when-it-matters" class="hash-link" aria-label="Direct link to Automatic Alerting: Be Informed When It Matters" title="Direct link to Automatic Alerting: Be Informed When It Matters">​</a></h3>
+<p>Stop staring at dashboards. KubriX 3.0 brings integrated Grafana Managed Alerts so teams get notified automatically when common Kubernetes issues occur — from misconfigured workloads to resource bottlenecks.</p>
+<p>Each team can customize how and where they want to receive alerts — email, Slack, or any alerting backend. Stay ahead of issues before they impact users.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="improved-supply-chain-security">Improved Supply Chain Security<a href="https://kubrix.io/blog/kubriX-3.0-released#improved-supply-chain-security" class="hash-link" aria-label="Direct link to Improved Supply Chain Security" title="Direct link to Improved Supply Chain Security">​</a></h3>
+<p>We’ve also tightened security within the KubriX platform itself:</p>
+<p>Our internal CI/CD pipeline now tracks CVE changes for every platform service update — helping prioritize critical patches faster.</p>
+<p>Secrets management is smarter: more services now pull secrets securely from Vault — either user-defined or auto-generated and injected via push-secrets.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="always-up-to-date">Always Up-to-Date<a href="https://kubrix.io/blog/kubriX-3.0-released#always-up-to-date" class="hash-link" aria-label="Direct link to Always Up-to-Date" title="Direct link to Always Up-to-Date">​</a></h3>
+<p>KubriX 3.0 ships with the latest stable versions of all core platform services, including:</p>
+<p>ArgoCD, Backstage, CloudNative-PG, External-Secrets, Falco-Exporter, Grafana, Ingress-nginx, K8s-Monitoring, Keycloak, Velero, Cost-Analyzer, Crossplane, Loki, PGAdmin4, PostgreSQL, Tempo, Trivy-Operator, KubeVirt, KubeVirt-Manager — and more.</p>
+<p>Keeping platform services current is hard. With KubriX, it’s effortless.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-this-release-matters">Why This Release Matters<a href="https://kubrix.io/blog/kubriX-3.0-released#why-this-release-matters" class="hash-link" aria-label="Direct link to Why This Release Matters" title="Direct link to Why This Release Matters">​</a></h2>
+<ul>
+<li>
+<p>Stronger Access Controls: Least-privilege principles are enforced by design — boosting security and usability for every team.</p>
+</li>
+<li>
+<p>Proactive Operations: Built-in alerting means fewer surprises and faster recovery times.</p>
+</li>
+<li>
+<p>Secure by Default: From CVE tracking to Vault-based secrets, KubriX 3.0 strengthens your software supply chain.</p>
+</li>
+<li>
+<p>Future-Proof: You’re always running the latest and most secure platform stack — without the manual overhead.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="get-started-with-kubrix-30">Get Started with KubriX 3.0<a href="https://kubrix.io/blog/kubriX-3.0-released#get-started-with-kubrix-30" class="hash-link" aria-label="Direct link to Get Started with KubriX 3.0" title="Direct link to Get Started with KubriX 3.0">​</a></h2>
+<ul>
+<li>
+<p>Already a <strong>KubriX Prime</strong> customer? You’re getting KubriX 3.0 automatically via your Git update channel — no action needed.</p>
+</li>
+<li>
+<p>New to KubriX? <a href="https://kubrix.io/plans#contact" target="_blank" rel="noopener noreferrer">Schedule a demo</a> to see how we can accelerate your platform engineering journey.</p>
+</li>
+<li>
+<p>Like what we’re building? ⭐ us on <a href="https://github.com/suxess-it/kubriX" target="_blank" rel="noopener noreferrer">GitHub</a>!</p>
+</li>
+</ul>
+<p><strong>KubriX 3.0</strong> — Your internal developer platform for <strong>faster</strong>, <strong>smarter</strong>, and <strong>more secure</strong> application delivery.</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Introducing KubriX 2.1 – Smarter Automation, Stronger Security, Seamless Scaling!]]></title>
             <link>https://kubrix.io/blog/kubriX-2.1-released</link>
