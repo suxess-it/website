@@ -4,10 +4,74 @@
         <title>kubriX Blog</title>
         <link>https://kubrix.io/blog</link>
         <description>kubriX Blog</description>
-        <lastBuildDate>Thu, 15 May 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 25 Jun 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Introducing KubriX 4.0 - Scalable, Flexible and Team-Centric Platform Engineering]]></title>
+            <link>https://kubrix.io/blog/kubriX-4.0-released</link>
+            <guid>https://kubrix.io/blog/kubriX-4.0-released</guid>
+            <pubDate>Wed, 25 Jun 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[We’re thrilled to announce the release of KubriX 4.0 — our most flexible and team‑centric version yet!]]></description>
+            <content:encoded><![CDATA[<p>We’re thrilled to announce the release of <strong>KubriX 4.0</strong> — our most flexible and team‑centric version yet!</p>
+<p>This upgrade delivers <strong>major component refreshes, native vcluster integration, and fine‑grained controls</strong> that give platform and application teams more autonomy without sacrificing security.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="whats-new-in-kubrix-40">What’s New in KubriX 4.0?<a href="https://kubrix.io/blog/kubriX-4.0-released#whats-new-in-kubrix-40" class="hash-link" aria-label="Direct link to What’s New in KubriX 4.0?" title="Direct link to What’s New in KubriX 4.0?">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="next-gen-core-components">Next-Gen Core Components<a href="https://kubrix.io/blog/kubriX-4.0-released#next-gen-core-components" class="hash-link" aria-label="Direct link to Next-Gen Core Components" title="Direct link to Next-Gen Core Components">​</a></h3>
+<p>KubriX 4.0 brings the heart of the platform to the latest majors:</p>
+<ul>
+<li><strong>Argo CD 3.0</strong> brings the new UI, faster diff engine, and improved sharding - we implement tighter RBAC too</li>
+<li><strong>Grafana 12</strong> a major visual refresh plus query caching for lightning-fast dashboards.</li>
+<li><strong>Kyverno 1.14</strong> policy exceptions &amp; generate-controls for air-tight supply-chain guardrails..</li>
+<li><strong>Backstage 1.38.1</strong> faster catalog sync, tighter permissions and dynamic scaffolder secrets into vault</li>
+</ul>
+<p>Keeping these giants current means less manual patching and an instant security win.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vcluster-integration--team-self-service-prime">vCluster Integration &amp; Team Self-Service (Prime)<a href="https://kubrix.io/blog/kubriX-4.0-released#vcluster-integration--team-self-service-prime" class="hash-link" aria-label="Direct link to vCluster Integration &amp; Team Self-Service (Prime)" title="Direct link to vCluster Integration &amp; Team Self-Service (Prime)">​</a></h3>
+<p>Need <strong>ephemeral clusters for tests, proofs-of-concept, or customer demos</strong>? With the new vcluster template you can spin up fully-isolated, cost-efficient virtual clusters inside any host in minutes—complete with KubriX guardrails out-of-the-box.
+Team Members get admin rights inside shared vcluster while platform engineers keep global policy control.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="smarter-hub--spoke-onboarding-prime">Smarter Hub &amp; Spoke Onboarding (Prime)<a href="https://kubrix.io/blog/kubriX-4.0-released#smarter-hub--spoke-onboarding-prime" class="hash-link" aria-label="Direct link to Smarter Hub &amp; Spoke Onboarding (Prime)" title="Direct link to Smarter Hub &amp; Spoke Onboarding (Prime)">​</a></h3>
+<p>Large organisations rarely have a single prod cluster. The new <code>destinationClusters</code> list inside the onboarding workflow lets you declare which team may deploy to which physical or virtual cluster. No more mis-deployments or ticket ping-pong governance and autonomy in a single YAML stanza.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="quality-of-life-enhancements">Quality-of-Life Enhancements<a href="https://kubrix.io/blog/kubriX-4.0-released#quality-of-life-enhancements" class="hash-link" aria-label="Direct link to Quality-of-Life Enhancements" title="Direct link to Quality-of-Life Enhancements">​</a></h3>
+<ul>
+<li><strong>ignoreDifferences</strong> everywhere – fewer false “Out-of-Sync”s after Argo CD 3.0.</li>
+<li><strong>Auto-bootstrap</strong> of KubriX core into fresh customer repos.</li>
+<li><strong>Namespace label/annotation</strong> presets in the onboarding template for better policy targeting.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="granular-permissions-separation">Granular Permissions Separation<a href="https://kubrix.io/blog/kubriX-4.0-released#granular-permissions-separation" class="hash-link" aria-label="Direct link to Granular Permissions Separation" title="Direct link to Granular Permissions Separation">​</a></h3>
+<p>Building on last versions RBAC overhaul, kubriX v4.0 provides sub-team-level scopes across Argo CD, Vault, Backstage, Kargo and Grafana. You can now:</p>
+<ul>
+<li>Restrict dashboard editing while still allowing query exploration.</li>
+<li>Delegate environment-specific Argo CD sync privileges to release engineers.</li>
+<li>Separate catalog write access from Backstage entity ownership.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="breaking-changes-you-must-review">Breaking changes you must review<a href="https://kubrix.io/blog/kubriX-4.0-released#breaking-changes-you-must-review" class="hash-link" aria-label="Direct link to Breaking changes you must review" title="Direct link to Breaking changes you must review">​</a></h2>
+<ul>
+<li><strong>Argo CD 2.14 → 3.0</strong>: check for removed RBAC verbs and new diff options.</li>
+<li><strong>Grafana 11 → 12</strong>: legacy dashboard JSON v1 IDs are no longer accepted.</li>
+<li><strong>External-Secrets v0.16+</strong>: v1alpha1 resources are now unsupported—migrate or prune, see <a href="https://github.com/external-secrets/external-secrets/releases/tag/v0.16.1" target="_blank" rel="noopener noreferrer">github.com</a>. (For next Release there will be another change requirement for external-secrets, we will inform with next release accordingly).</li>
+</ul>
+<p>Upgrade guides for each component are linked in the release notes — read them before hitting helm upgrade.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-this-release-matters">Why This Release Matters<a href="https://kubrix.io/blog/kubriX-4.0-released#why-this-release-matters" class="hash-link" aria-label="Direct link to Why This Release Matters" title="Direct link to Why This Release Matters">​</a></h2>
+<ul>
+<li><strong>Stay Ahead of Upstream</strong> – Ship on the latest Argo CD, Grafana, Kyverno, Kubevirt &amp; Backstage without spending weeks on migration/testing.</li>
+<li><strong>Accelerate Team Autonomy</strong> – vcluster and destinationClusters unlock safe self‑service while keeping guard‑rails intact.</li>
+<li><strong>Security by Default</strong> – Updated dependencies, tighter policies, and CVE tracking reduce risk across the board.</li>
+<li><strong>Future‑Proof</strong> – 4.0 lays the groundwork for upcoming multi‑cluster rollout orchestration and delivery enhancements</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="get-started-with-kubrix-40">Get Started with KubriX 4.0<a href="https://kubrix.io/blog/kubriX-4.0-released#get-started-with-kubrix-40" class="hash-link" aria-label="Direct link to Get Started with KubriX 4.0" title="Direct link to Get Started with KubriX 4.0">​</a></h2>
+<ul>
+<li>
+<p>Already a <strong>KubriX Prime</strong> customer? You’re getting KubriX 4.0 automatically via your Git update channel — no action needed.</p>
+</li>
+<li>
+<p>New to KubriX? <a href="https://kubrix.io/plans#contact" target="_blank" rel="noopener noreferrer">Schedule a demo</a> to see how we can accelerate your platform engineering journey.</p>
+</li>
+<li>
+<p>Like what we’re building? ⭐ us on <a href="https://github.com/suxess-it/kubriX" target="_blank" rel="noopener noreferrer">GitHub</a>!</p>
+</li>
+</ul>
+<p><strong>KubriX 4.0</strong> — Your internal developer platform for <strong>faster</strong>, <strong>smarter</strong>, and <strong>more secure</strong> application delivery.</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Introducing KubriX 3.0 - Smarter, Safer, and More Secure Platform Engineering]]></title>
             <link>https://kubrix.io/blog/kubriX-3.0-released</link>
