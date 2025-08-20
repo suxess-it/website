@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.5.2">
 <title data-rh="true">Installation | kubriX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://kubrix.io/docs/installation"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="keywords" content="kubrix, idp, internal developer platform, kubernetes"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Installation | kubriX"><meta data-rh="true" name="description" content="📦 Introduction"><meta data-rh="true" property="og:description" content="📦 Introduction"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://kubrix.io/docs/installation"><link data-rh="true" rel="alternate" href="https://kubrix.io/docs/installation" hreflang="en"><link data-rh="true" rel="alternate" href="https://kubrix.io/docs/installation" hreflang="x-default"><script data-rh="true">localStorage.getItem("theme")&&(localStorage.removeItem("theme"),window.location.reload())</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="kubriX RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="kubriX Atom Feed"><link rel="stylesheet" href="/assets/css/styles.944bf4f3.css">
-<script src="/assets/js/runtime~main.34ceb1e4.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.aaf6dc0c.js" defer="defer"></script>
 <script src="/assets/js/main.a43d45f8.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -59,12 +59,18 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="create-github-oauth-app-and-set-secrets-in-vault">Create Github OAuth App and set secrets in vault<a href="#create-github-oauth-app-and-set-secrets-in-vault" class="hash-link" aria-label="Direct link to Create Github OAuth App and set secrets in vault" title="Direct link to Create Github OAuth App and set secrets in vault">​</a></h3>
 <p>The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your <a href="https://github.com/organizations/YOUR-ORG/settings/applications" target="_blank" rel="noopener noreferrer">developer settings</a>.
 Click the button &quot;New OAuth App&quot;.</p>
-<p>For local KinD Cluster:</p>
+<p><strong>For Github Codespaces</strong>:</p>
+<p>The URL of the Codespace has a random name and ID like <code>https://crispy-robot-g44qvrx9jpx29xx7.github.dev/</code>. Copy the hostname (codespace name) except &quot;.github.dev&quot; and set the URLs of the created OAuth App like this:</p>
+<ul>
+<li>Homepage URL: <code>&lt;copied hostname&gt;-6691.app.github.dev</code></li>
+<li>Authorization callback URL: <code>&lt;copied hostname&gt;-6691.app.github.dev/api/auth/github</code></li>
+</ul>
+<p><strong>For local KinD Cluster</strong>:</p>
 <ul>
 <li>Homepage URL: <code>https://backstage.127-0-0-1.nip.io</code></li>
 <li>Authorization callback URL: <code>https://backstage.127-0-0-1.nip.io/api/auth/github</code></li>
 </ul>
-<p>For remote Kubernetes Cluster:</p>
+<p><strong>For remote Kubernetes Cluster</strong>:</p>
 <ul>
 <li>Homepage URL and Authorization callback URL must match &quot;<a href="https://backstage.$%7BKUBRIX_CUSTOMER_DOMAIN%7D" target="_blank" rel="noopener noreferrer">https://backstage.${KUBRIX_CUSTOMER_DOMAIN}</a>&quot;</li>
 </ul>
