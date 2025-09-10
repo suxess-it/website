@@ -1,0 +1,47 @@
+# kubriX - internal developer platform
+
+> kubriX is a curated, opinionated, yet highly flexible Internal Developer Platform (IDP) distribution, build from predefined bricks for kubernetes
+> https://kubrix.io
+
+description: >
+  kubriX transforms scattered cloud-native tools into a cohesive Internal Developer Platform (IDP) 
+  that enables faster, safer, and more efficient software delivery. It brings together open-source 
+  building blocks for delivery, security & compliance, observability, and developer experience into 
+  a consistent and integrated solution.
+
+## Key Features
+- [kubriX platform](https://kubrix.io/): kubriX platform - deliver software faster, with ease
+
+## Blog
+- [Accelerating Internal Developer Platforms with kubriX | kubriX](https://kubrix.io/blog/why-idp-distribution): kubriX is a curated, opinionated, and highly flexible distribution for Internal Developer Platforms (IDPs). But why do platform teams need an IDP distribution in the first place?
+- [Introducing KubriX 4.0 - Scalable, Flexible and Team-Centric Platform Engineering | kubriX](https://kubrix.io/blog/kubriX-4.0-released): We’re thrilled to announce the release of KubriX 4.0 — our most flexible and team‑centric version yet!
+- [kubriX latest oss update issues | kubriX](https://kubrix.io/blog/kubriX-oss-updates-quality-gates): At kubriX, we hold a strong belief in the transformative power of Open Source software. Our commitment goes beyond just using these tools — we actively contribute to the Open Source projects that drive our platform forward.
+- [Introducing KubriX 3.0 - Smarter, Safer, and More Secure Platform Engineering | kubriX](https://kubrix.io/blog/kubriX-3.0-released): We’re thrilled to announce the release of KubriX 3.0 — our most powerful and enterprise-ready version yet!
+- [Announcing KubriX 2.0 – A Major Leap Forward! | kubriX](https://kubrix.io/blog/kubriX-2.0-released): We are thrilled to announce the release of KubriX IDP-Distribution 2.0! Following the successful launch of version 1.0 in January, our February release takes the platform to the next level with game-changing features, enhanced automation, and seamless enterprise integration.
+- [Reduce risks, time and costs with kubriX | kubriX](https://kubrix.io/blog/benefits-idp-distribution-quality-gates): An IDP often consists of several products or opensource projects. Updating those components is one thing your platform team needs to do regularly for several reasons:
+- [Hub & Spoke Architecture (kubriX Prime feature) | kubriX](https://kubrix.io/docs/installation/hub-and-spoke-basics): In topologies where you want a central management cluster operating many workload clusters, we speak of a Hub & Spoke model.
+- [kubriX playground with GitHub Codespaces | kubriX](https://kubrix.io/docs/installation/codespaces): You can create a kubriX playground by starting a GitHub Codespace in your browser. With that you have your own kubriX test environment within minutes without any installations on your local machine.
+- [How to customize kubriX for your needs | kubriX](https://kubrix.io/docs/configuration): Customizing the kubriX stack
+- [User Guide | kubriX](https://kubrix.io/docs/user-guide): Onboard teams and applications
+- [Introducing KubriX 2.1 – Smarter Automation, Stronger Security, Seamless Scaling! | kubriX](https://kubrix.io/blog/kubriX-2.1-released): Just one month after our major KubriX 2.0 release, we’re back with another power-packed upgrade: KubriX IDP-Distribution 2.1 is here!
+- [Treat your platform as a product | kubriX](https://kubrix.io/blog/team-topologies-platform-engineering): Team Topologies gave the platform engineering topic a huge momentum in 2019. And it hasn't lost its popularity since then.
+- [Blog | kubriX](https://kubrix.io/blog): Blog
+- [kubriX platform - released | kubriX](https://kubrix.io/blog/kubrix-platform-release): We're thrilled to announce the official launch of our latest product - kubriX platform!
+
+## Documentation Sets
+- [Quickstart kubriX on a local KinD cluster | kubriX](https://kubrix.io/docs/installation/kind): With this step-by-step guide kubriX with its default stack gets deployed on your local KinD cluster.
+- [Troubleshooting | kubriX](https://kubrix.io/docs/troubleshooting): 
+- [Troubleshooting during Installation | kubriX](https://kubrix.io/docs/troubleshooting/installation-troubleshooting): Keycloak degraded
+- [Onboarding applications | kubriX](https://kubrix.io/docs/user-guide/onboarding-apps): When your team creates applications with some specific conventions which applies to the platform ApplicationSets, then your app is automatically deployed via a platform ApplicationSet and you don't need to deal with any ArgoCD application definitions.
+- [Onboarding teams | kubriX](https://kubrix.io/docs/user-guide/onboarding-teams): New teams can simply onboard themselves by executing the 'team-onboarding' template or by clicking "Choose" in the "Team-Onboarding" template here//backstage.demo.kubrix.cloud/create
+- [Promoting changes with Kargo | kubriX](https://kubrix.io/docs/user-guide/promoting-changes): When you want to make changes to your applications Kubernetes resources you can simply click "View sources" on your components overview page. Use the "umbrella" application and not the stage specific application for this!
+- [kubriX Roadmap | kubriX](https://kubrix.io/docs/roadmap): We are constantly developing kubriX and carefully listen to our customers challenges and requirements.
+- [Onboarding teams and apps | kubriX](https://kubrix.io/docs/user-guide/onboarding-additional-infos): According to the ADR Onboarding teams in a gitops way we are currently working with the approach apps-in-any-namespace and multi-tenant kyverno-policies.
+- [Quickstart demo stack on Kubernetes | kubriX](https://kubrix.io/docs/installation/quick-start-kubernetes): With this step-by-step guide kubriX with its default demo stack gets deployed on your preferred Kubernetes cluster
+- [Overview | kubriX](https://kubrix.io/docs/overview): What is kubriX?
+- [Production installation | kubriX](https://kubrix.io/docs/installation/production): ⚠️ We highly recommend using kubriX-prime for production workload and professional services from suXess-it. Still, you can use kubriX OSS also for small production environments without special security or compliance needs at your own risk.
+- [kubriX-flavor-templates | kubriX](https://kubrix.io/docs/installation/kubriX-flavor-templates): background information
+- [Installation | kubriX](https://kubrix.io/docs/installation): 📦 Introduction
+
+## Plans
+- [Plans | kubriX](https://kubrix.io/plans): kubriX platform comes in 3 editons: oss, prime and select edition.
