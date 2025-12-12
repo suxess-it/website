@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kubrix.io/blog</id>
-    <title>kubriX Blog</title>
+    <title>kubriX | your internal developer platform (IDP) made in Austria Blog</title>
     <updated>2025-10-06T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kubrix.io/blog"/>
-    <subtitle>kubriX Blog</subtitle>
+    <subtitle>kubriX | your internal developer platform (IDP) made in Austria Blog</subtitle>
     <icon>https://kubrix.io/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Introducing KubriX 5.0 - Scalable, Flexible and Team-Centric Platform Engineering]]></title>
