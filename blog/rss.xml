@@ -4,10 +4,93 @@
         <title>kubriX | your internal developer platform (IDP) made in Austria Blog</title>
         <link>https://kubrix.io/blog</link>
         <description>kubriX | your internal developer platform (IDP) made in Austria Blog</description>
-        <lastBuildDate>Mon, 06 Oct 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 23 Dec 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[kubriX 6.0.0 — Our Christmas Present to Platform Engineers]]></title>
+            <link>https://kubrix.io/blog/kubriX-6.0-released</link>
+            <guid>https://kubrix.io/blog/kubriX-6.0-released</guid>
+            <pubDate>Tue, 23 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Christmas is the time for good food, time with family, and — if you’re a platform engineer — finally having a moment to breathe while everything just works.]]></description>
+            <content:encoded><![CDATA[<p>Christmas is the time for good food, time with family, and — if you’re a platform engineer — finally having a moment to breathe while everything just works.</p>
+<p>This year, we’re wrapping up something special under the kubriX tree:
+<strong>kubriX 6.0.0</strong>, a release focused on <strong>high availability, resilience, and platform maturity</strong>.</p>
+<p>No shiny toy features for one demo.<br>
+<!-- -->This is the kind of present you still appreciate in February — when clusters upgrade, nodes disappear, and your platform keeps running.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-whats-in-the-box">🎁 What’s in the Box?<a href="https://kubrix.io/blog/kubriX-6.0-released#-whats-in-the-box" class="hash-link" aria-label="Direct link to 🎁 What’s in the Box?" title="Direct link to 🎁 What’s in the Box?">​</a></h2>
+<p>🚀 High Availability — Built In, Not Bolted On</p>
+<p>kubriX 6.0.0 makes <strong>high availability a first-class citizen</strong> across the platform.</p>
+<ul>
+<li>
+<p>PodDisruptionBudgets to survive node drains and upgrades</p>
+</li>
+<li>
+<p>topologySpreadConstraints to distribute workloads across failure domains</p>
+</li>
+<li>
+<p>Dedicated HA values and topology-aware defaults</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-gitops-that-behaves-while-youre-on-holiday">🔐 GitOps That Behaves While You’re on Holiday<a href="https://kubrix.io/blog/kubriX-6.0-released#-gitops-that-behaves-while-youre-on-holiday" class="hash-link" aria-label="Direct link to 🔐 GitOps That Behaves While You’re on Holiday" title="Direct link to 🔐 GitOps That Behaves While You’re on Holiday">​</a></h3>
+<p>Argo CD got some serious love in this release:</p>
+<ul>
+<li>
+<p>Refactored dashboards for better operational clarity</p>
+</li>
+<li>
+<p>Safer rolling updates in HA mode</p>
+</li>
+<li>
+<p>Clearer permission models for platform teams and application teams</p>
+</li>
+<li>
+<p>Admin-only terminal access for controlled troubleshooting</p>
+</li>
+</ul>
+<p>This means GitOps workflows that stay predictable and boring — which is exactly what you want when you’re not at your desk.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-cleaner-configuration-less-mental-overhead">🧠 Cleaner Configuration, Less Mental Overhead<a href="https://kubrix.io/blog/kubriX-6.0-released#-cleaner-configuration-less-mental-overhead" class="hash-link" aria-label="Direct link to 🧠 Cleaner Configuration, Less Mental Overhead" title="Direct link to 🧠 Cleaner Configuration, Less Mental Overhead">​</a></h3>
+<p>One of the biggest internal gifts in 6.0.0 is the new multi-layer values structure:</p>
+<ul>
+<li>
+<p>Clear separation of defaults, environment values, and overrides</p>
+</li>
+<li>
+<p>kubrix-default values to stay DRY and reduce unintended diffs</p>
+</li>
+<li>
+<p>Bootstrap and installer aligned to the same structure</p>
+</li>
+</ul>
+<p>This makes kubriX much easier to operate across multiple cloud providers, clusters, stages, and teams — even after a long year.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-why-kubrix-600-matters">🎅 Why kubriX 6.0.0 Matters<a href="https://kubrix.io/blog/kubriX-6.0-released#-why-kubrix-600-matters" class="hash-link" aria-label="Direct link to 🎅 Why kubriX 6.0.0 Matters" title="Direct link to 🎅 Why kubriX 6.0.0 Matters">​</a></h2>
+<p>kubriX 6.0.0 is not about flashy features — it’s about sleeping better:</p>
+<ul>
+<li>
+<p>High availability by default</p>
+</li>
+<li>
+<p>Predictable behavior during upgrades</p>
+</li>
+<li>
+<p>Cleaner configuration at scale</p>
+</li>
+<li>
+<p>Safer GitOps workflows</p>
+</li>
+<li>
+<p>A platform that doesn’t need babysitting</p>
+</li>
+</ul>
+<p>With kubriX 6.0.0, setting up and running an internal developer platform is simpler, more secure, and more scalable than ever.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-unwrap-kubrix-600">🎄 Unwrap kubriX 6.0.0<a href="https://kubrix.io/blog/kubriX-6.0-released#-unwrap-kubrix-600" class="hash-link" aria-label="Direct link to 🎄 Unwrap kubriX 6.0.0" title="Direct link to 🎄 Unwrap kubriX 6.0.0">​</a></h2>
+<p>Already a <strong>kubriX Prime</strong> customer?
+kubriX 6.0.0 is available automatically via your Git update channel — no action needed.</p>
+<p>New to kubriX?
+Let’s talk about how to build a <strong>resilient internal developer platform</strong> that doesn’t ruin your holidays.</p>
+<p><strong>kubriX 6.0.0 — our Christmas present to platform engineers everywhere.</strong> 🎁🚀</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Introducing KubriX 5.0 - Scalable, Flexible and Team-Centric Platform Engineering]]></title>
             <link>https://kubrix.io/blog/kubriX-5.0-released</link>
