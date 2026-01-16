@@ -535,7 +535,7 @@ and our quality checks dramatically reduce your efforts and deployment risks.</p
 <p>As the following real life example shows, sometimes updates can be really hard.</p>
 <p>Recently a new version from <a href="https://github.com/grafana/helm-charts/releases/tag/mimir-distributed-5.5.0" target="_blank" rel="noopener noreferrer">Grafana Mimir Helm-Chart 5.5.0</a> was released.
 I don't know wether you are a person who really evaluates changelogs before updates,
-but also if you did read the <a href="https://github.com/grafana/mimir/blob/main/operations/helm/charts/mimir-distributed/CHANGELOG.md#550" target="_blank" rel="noopener noreferrer">Changelog for 5.5.0</a>, you won't recognize any breaking changes.</p>
+but also if you did read the <a href="https://github.com/grafana/mimir/blob/main/operations/helm/charts/mimir-distributed/CHANGELOG#550" target="_blank" rel="noopener noreferrer">Changelog for 5.5.0</a>, you won't recognize any breaking changes.</p>
 <p>However, the first time you would probably recognize a problem is that your Grafana Mimir ArgoCD application stays OutOfSync forever. If you take a closer look to the diff, you will see:</p>
 <p><img decoding="async" loading="lazy" alt="image" src="https://kubrix.io/assets/images/blog-2024-10-18-benefits-quality-gates-diff-2b1be97d3c3cca4c4f0e32a6615670ca.png" width="1727" height="597" class="img_ev3q"></p>
 <p>green (right side) is desired state, left is current state.</p>

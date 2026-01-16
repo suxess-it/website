@@ -38,7 +38,7 @@ description: >
 - [kubriX Roadmap | kubriX](https://kubrix.io/docs/roadmap): We are constantly developing kubriX and carefully listen to our customers challenges and requirements.
 - [Onboarding teams and apps | kubriX](https://kubrix.io/docs/user-guide/onboarding-additional-infos): According to the ADR Onboarding teams in a gitops way we are currently working with the approach apps-in-any-namespace and multi-tenant kyverno-policies.
 - [Quickstart demo stack on Kubernetes | kubriX](https://kubrix.io/docs/installation/quick-start-kubernetes): With this step-by-step guide kubriX with its default demo stack gets deployed on your preferred Kubernetes cluster
-- [Overview | kubriX](https://kubrix.io/docs/overview): What is kubriX?
+- [Overview | kubriX](https://kubrix.io//docs/overview/what-is-kubrix): What is kubriX?
 - [Production installation | kubriX](https://kubrix.io/docs/installation/production): ⚠️ We highly recommend using kubriX-prime for production workload and professional services from suXess-it. Still, you can use kubriX OSS also for small production environments without special security or compliance needs at your own risk.
 - [kubriX-flavor-templates | kubriX](https://kubrix.io/docs/installation/kubriX-flavor-templates): background information
 - [Installation | kubriX](https://kubrix.io/docs/installation): 📦 Introduction
