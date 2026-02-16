@@ -4,10 +4,189 @@
         <title>kubriX IDP Blog</title>
         <link>https://kubrix.io/blog</link>
         <description>kubriX IDP Blog</description>
-        <lastBuildDate>Tue, 23 Dec 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 16 Feb 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[When 2 CPUs of “Nothing” Turned Into a Deep Mimir Lesson]]></title>
+            <link>https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting</link>
+            <guid>https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting</guid>
+            <pubDate>Mon, 16 Feb 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Debugging Store-Gateway CPU Spikes, GC Thrashing, and a Hidden Memory Limit]]></description>
+            <content:encoded><![CDATA[<p><strong>Debugging Store-Gateway CPU Spikes, GC Thrashing, and a Hidden Memory Limit</strong></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-symptom">The symptom<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#the-symptom" class="hash-link" aria-label="Direct link to The symptom" title="Direct link to The symptom">​</a></h2>
+<p>Our Grafana Mimir store-gateway pods suddenly jumped from ~0.2 CPU to nearly <strong>2 full cores each</strong>.</p>
+<p>No traffic spike.
+No deployment.
+No restarts.
+No errors.</p>
+<p>Just CPU.</p>
+<p>This is exactly the kind of issue that sends engineers down rabbit holes — because nothing obvious is wrong.</p>
+<p><img decoding="async" loading="lazy" alt="image" src="https://kubrix.io/assets/images/blog-2026-02-16-store-gateway-cpu-metrics-0c7a1bafc08db4fca4495acc97c4d9de.png" width="1472" height="1109" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="initial-assumptions-all-wrong">Initial assumptions (all wrong)<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#initial-assumptions-all-wrong" class="hash-link" aria-label="Direct link to Initial assumptions (all wrong)" title="Direct link to Initial assumptions (all wrong)">​</a></h2>
+<p>When CPU spikes without traffic, the usual suspects are:</p>
+<ul>
+<li>query surge</li>
+<li>compactor backlog</li>
+<li>missing sparse index headers</li>
+<li>object storage latency</li>
+<li>throttling or node pressure</li>
+</ul>
+<p>All plausible.</p>
+<p>None correct.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-turning-point-profiling-instead-of-guessing">The turning point: profiling instead of guessing<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#the-turning-point-profiling-instead-of-guessing" class="hash-link" aria-label="Direct link to The turning point: profiling instead of guessing" title="Direct link to The turning point: profiling instead of guessing">​</a></h2>
+<p>Instead of chasing hypotheses, we captured a CPU profile directly from a running store-gateway.</p>
+<p>Mimir exposes Go’s built-in profiling endpoint, so you can sample real CPU usage without restarting anything.</p>
+<p>We ran:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">go tool pprof -top store-gateway.cpu.pprof</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>The result:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">runtime.gcBgMarkWorker → ~95%</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>That means:</p>
+<blockquote>
+<p>The CPU wasn’t busy doing useful work.
+It was almost entirely doing garbage collection.</p>
+</blockquote>
+<p>At that moment the problem category changed completely.</p>
+<p>This was not a load issue.
+This was a <strong>memory behavior issue</strong>.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="confirming-with-a-heap-profile">Confirming with a heap profile<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#confirming-with-a-heap-profile" class="hash-link" aria-label="Direct link to Confirming with a heap profile" title="Direct link to Confirming with a heap profile">​</a></h2>
+<p>Next step: inspect memory.</p>
+<p>Heap profile result:</p>
+<ul>
+<li>~662 MB live heap</li>
+<li>~83% used by index cache structures</li>
+</ul>
+<p>This told us two important things:</p>
+<ol>
+<li>Memory usage was <strong>expected</strong>, not a leak.</li>
+<li>The cache was working normally.</li>
+</ol>
+<p>So why was GC running constantly if memory usage was healthy?</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-hidden-culprit-gomemlimit">The hidden culprit: GOMEMLIMIT<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#the-hidden-culprit-gomemlimit" class="hash-link" aria-label="Direct link to The hidden culprit: GOMEMLIMIT" title="Direct link to The hidden culprit: GOMEMLIMIT">​</a></h2>
+<p>The answer wasn’t in Mimir code.
+It was in configuration.</p>
+<p>The Helm chart automatically sets:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">GOMEMLIMIT = memory_request</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Our store-gateway configuration:</p>
+<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token key atrule">resources</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">  </span><span class="token key atrule">requests</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">    </span><span class="token key atrule">memory</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"> 512Mi</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>So Go’s runtime believed:</p>
+<blockquote>
+<p>“I must keep heap usage under 512 MiB.”</p>
+</blockquote>
+<p>But the real working set needed ~660 MB.</p>
+<p>That creates a classic GC thrash loop:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">heap grows → exceeds limit → GC runs aggressively → CPU spikes → repeat</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Nothing was broken.
+The runtime was behaving exactly as instructed.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-kubernetes-made-this-subtle">Why Kubernetes made this subtle<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#why-kubernetes-made-this-subtle" class="hash-link" aria-label="Direct link to Why Kubernetes made this subtle" title="Direct link to Why Kubernetes made this subtle">​</a></h2>
+<p>We hadn’t set memory limits — only requests.</p>
+<p>So Kubernetes would happily allow the container to use more than 512Mi.</p>
+<p>But Go didn’t know that.</p>
+<p>To Go, <strong>GOMEMLIMIT is the limit</strong>, regardless of Kubernetes policy.</p>
+<p>This created a hidden mismatch:</p>
+<table><thead><tr><th>Layer</th><th>Believed limit</th></tr></thead><tbody><tr><td>Go runtime</td><td>512Mi</td></tr><tr><td>Kubernetes</td><td>unlimited</td></tr></tbody></table>
+<p>This kind of cross-layer interaction is where many real production problems live.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-fix">The fix<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#the-fix" class="hash-link" aria-label="Direct link to The fix" title="Direct link to The fix">​</a></h2>
+<p>Increase memory request.</p>
+<p>We changed:</p>
+<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token key atrule">memory</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"> 512Mi</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>to:</p>
+<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token key atrule">memory</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"> 2Gi</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>That automatically raised:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">GOMEMLIMIT ≈ 2Gi</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Result:</p>
+<ul>
+<li>GC frequency dropped</li>
+<li>CPU dropped immediately</li>
+<li>system stabilized</li>
+</ul>
+<p>No code changes.
+No scaling.
+No tuning.</p>
+<p>Just correct sizing.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-this-happens-specifically-in-store-gateway">Why this happens specifically in store-gateway<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#why-this-happens-specifically-in-store-gateway" class="hash-link" aria-label="Direct link to Why this happens specifically in store-gateway" title="Direct link to Why this happens specifically in store-gateway">​</a></h2>
+<p>Store-gateway is intentionally memory heavy.</p>
+<p>It caches:</p>
+<ul>
+<li>index entries</li>
+<li>postings lists</li>
+<li>series metadata</li>
+</ul>
+<p>These caches reduce latency and object-store reads.</p>
+<p>So high memory usage is <strong>expected and desirable</strong>.</p>
+<p>Trying to force it into a tiny memory footprint simply shifts cost to CPU (via GC).</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-capture-a-cpu-profile-from-mimir-store-gateway">How to capture a CPU profile from Mimir store-gateway<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#how-to-capture-a-cpu-profile-from-mimir-store-gateway" class="hash-link" aria-label="Direct link to How to capture a CPU profile from Mimir store-gateway" title="Direct link to How to capture a CPU profile from Mimir store-gateway">​</a></h2>
+<p>This is safe to do in production.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-port-forward-to-a-pod">1) Port-forward to a pod<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#1-port-forward-to-a-pod" class="hash-link" aria-label="Direct link to 1) Port-forward to a pod" title="Direct link to 1) Port-forward to a pod">​</a></h3>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">kubectl -n mimir port-forward pod/mimir-store-gateway 8080:8080</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>(your pod names may slightly be different)</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-download-a-profile">2) Download a profile<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#2-download-a-profile" class="hash-link" aria-label="Direct link to 2) Download a profile" title="Direct link to 2) Download a profile">​</a></h3>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">curl -o cpu.pprof \</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">  http://localhost:8080/debug/pprof/profile?seconds=30</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-analyze-locally">3) Analyze locally<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#3-analyze-locally" class="hash-link" aria-label="Direct link to 3) Analyze locally" title="Direct link to 3) Analyze locally">​</a></h3>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">go tool pprof -top cpu.pprof</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Most useful commands inside pprof:</p>
+<table><thead><tr><th>Command</th><th>Purpose</th></tr></thead><tbody><tr><td>top</td><td>hottest functions</td></tr><tr><td>top -cum</td><td>cumulative cost</td></tr><tr><td>list func</td><td>inspect code path</td></tr></tbody></table>
+<p>Flame graph view:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">go tool pprof -http=:0 cpu.pprof</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-capture-heap-profile">How to capture heap profile<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#how-to-capture-heap-profile" class="hash-link" aria-label="Direct link to How to capture heap profile" title="Direct link to How to capture heap profile">​</a></h2>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">curl -o heap.pprof \</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">  http://localhost:8080/debug/pprof/heap</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Analyze:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">go tool pprof -top -inuse_space heap.pprof</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Useful modes:</p>
+<table><thead><tr><th>Mode</th><th>Meaning</th></tr></thead><tbody><tr><td>inuse_space</td><td>live memory</td></tr><tr><td>alloc_space</td><td>allocation churn</td></tr><tr><td>alloc_objects</td><td>allocation rate</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="reading-profiles-correctly">Reading profiles correctly<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#reading-profiles-correctly" class="hash-link" aria-label="Direct link to Reading profiles correctly" title="Direct link to Reading profiles correctly">​</a></h2>
+<p>Common CPU profile signatures:</p>
+<table><thead><tr><th>Pattern</th><th>Interpretation</th></tr></thead><tbody><tr><td>runtime.gc* dominates</td><td>GC thrashing</td></tr><tr><td>syscall dominates</td><td>IO bound</td></tr><tr><td>crypto/tls dominates</td><td>TLS overhead</td></tr><tr><td>app code dominates</td><td>real workload</td></tr></tbody></table>
+<p>Profiles remove guesswork.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="key-lessons">Key lessons<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#key-lessons" class="hash-link" aria-label="Direct link to Key lessons" title="Direct link to Key lessons">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-cpu-problems-are-often-memory-problems">1. CPU problems are often memory problems<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#1-cpu-problems-are-often-memory-problems" class="hash-link" aria-label="Direct link to 1. CPU problems are often memory problems" title="Direct link to 1. CPU problems are often memory problems">​</a></h3>
+<p>If GC dominates CPU, look at heap sizing first.</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-requests-matter-more-than-limits-for-go-apps">2. Requests matter more than limits for Go apps<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#2-requests-matter-more-than-limits-for-go-apps" class="hash-link" aria-label="Direct link to 2. Requests matter more than limits for Go apps" title="Direct link to 2. Requests matter more than limits for Go apps">​</a></h3>
+<p>When GOMEMLIMIT is tied to requests, the request effectively becomes the runtime memory ceiling.</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-high-memory-usage-isnt-bad">3. High memory usage isn’t bad<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#3-high-memory-usage-isnt-bad" class="hash-link" aria-label="Direct link to 3. High memory usage isn’t bad" title="Direct link to 3. High memory usage isn’t bad">​</a></h3>
+<p>Caches are supposed to use memory. Starving them just moves cost elsewhere.</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-profiling--dashboards">4. Profiling &gt; dashboards<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#4-profiling--dashboards" class="hash-link" aria-label="Direct link to 4. Profiling > dashboards" title="Direct link to 4. Profiling > dashboards">​</a></h3>
+<p>Metrics tell you <strong>that</strong> something is wrong.
+Profiles tell you <strong>what</strong> is wrong.</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-most-production-mysteries-arent-bugs">5. Most production mysteries aren’t bugs<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#5-most-production-mysteries-arent-bugs" class="hash-link" aria-label="Direct link to 5. Most production mysteries aren’t bugs" title="Direct link to 5. Most production mysteries aren’t bugs">​</a></h3>
+<p>They’re interactions between layers:</p>
+<ul>
+<li>runtime behavior</li>
+<li>container scheduling</li>
+<li>Helm defaults</li>
+<li>caching logic</li>
+</ul>
+<p>Understanding those interactions is what distinguishes platform engineers from operators.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="final-takeaway">Final takeaway<a href="https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting#final-takeaway" class="hash-link" aria-label="Direct link to Final takeaway" title="Direct link to Final takeaway">​</a></h2>
+<p>Nothing was broken.</p>
+<p>The system behaved exactly as configured.</p>
+<p>We just didn’t realize how those configurations interacted.</p>
+<p>That’s the real lesson:</p>
+<blockquote>
+<p>Production performance issues are often not failures — they’re misunderstandings.</p>
+</blockquote>
+<p>And the fastest way to resolve them is:</p>
+<p><strong>Profile first. Tune second.</strong></p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[kubriX 6.0.0 — Our Christmas Present to Platform Engineers]]></title>
             <link>https://kubrix.io/blog/kubriX-6.0-released</link>
