@@ -4,10 +4,93 @@
         <title>kubriX IDP Blog</title>
         <link>https://kubrix.io/blog</link>
         <description>kubriX IDP Blog</description>
-        <lastBuildDate>Mon, 16 Feb 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 14 Apr 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[kubriX 7.0.0 - Open Source All the Way Down]]></title>
+            <link>https://kubrix.io/blog/kubriX-7.0-released</link>
+            <guid>https://kubrix.io/blog/kubriX-7.0-released</guid>
+            <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Some releases add features, others make bold architectural moves.]]></description>
+            <content:encoded><![CDATA[<p>Some releases add features, others make bold architectural moves.</p>
+<p><strong>kubriX 7.0.0</strong> does both: Replacing two core infrastructure components with better open-source alternatives, leveling up observability, extending high availability across even more services, and making Backstage a more powerful self-service hub.</p>
+<p>This is the kind of release that takes courage to ship: real breaking changes, real migrations, real improvements.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-open-source-first-vault--openbao">🔓 Open Source First: Vault → OpenBao<a href="https://kubrix.io/blog/kubriX-7.0-released#-open-source-first-vault--openbao" class="hash-link" aria-label="Direct link to 🔓 Open Source First: Vault → OpenBao" title="Direct link to 🔓 Open Source First: Vault → OpenBao">​</a></h2>
+<p>The headline change in kubriX 7.0.0 is the <strong>replacement of HashiCorp Vault with <a href="https://openbao.org/" target="_blank" rel="noopener noreferrer">OpenBao</a></strong>.</p>
+<p>OpenBao is the community-driven, truly open-source fork of Vault (licensed under MPL 2.0), created after HashiCorp moved Vault to the Business Source License. For kubriX users this means:</p>
+<ul>
+<li>No license restrictions - use it freely in any environment</li>
+<li>API-compatible with Vault - familiar workflows, same secrets engine</li>
+<li>Active community development and security maintenance</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-modern-ingress-traefik-replaces-ingress-nginx">🚦 Modern Ingress: Traefik Replaces ingress-nginx<a href="https://kubrix.io/blog/kubriX-7.0-released#-modern-ingress-traefik-replaces-ingress-nginx" class="hash-link" aria-label="Direct link to 🚦 Modern Ingress: Traefik Replaces ingress-nginx" title="Direct link to 🚦 Modern Ingress: Traefik Replaces ingress-nginx">​</a></h2>
+<p>kubriX 7.0.0 ships <strong>Traefik as the new default ingress controller</strong>, replacing ingress-nginx.</p>
+<p>Traefik brings a more cloud-native approach to ingress routing:</p>
+<ul>
+<li>Native support for dynamic configuration</li>
+<li>Built-in dashboard (optional) and observability</li>
+<li>Better integration with the rest of the kubriX stack</li>
+</ul>
+<p>A migration runbook is included in the release for existing deployments, and the kubriX support team is available to assist with a smooth transition.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-observability-level-up">📊 Observability Level-Up<a href="https://kubrix.io/blog/kubriX-7.0-released#-observability-level-up" class="hash-link" aria-label="Direct link to 📊 Observability Level-Up" title="Direct link to 📊 Observability Level-Up">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="prometheus-blackbox-exporter---now-integrated">Prometheus Blackbox Exporter - Now Integrated<a href="https://kubrix.io/blog/kubriX-7.0-released#prometheus-blackbox-exporter---now-integrated" class="hash-link" aria-label="Direct link to Prometheus Blackbox Exporter - Now Integrated" title="Direct link to Prometheus Blackbox Exporter - Now Integrated">​</a></h3>
+<p>The <strong>prometheus-blackbox-exporter</strong> is now a first-class kubriX citizen. Enable it to get out-of-the-box <strong>external probing</strong> for your services - HTTP, TCP, ICMP and more - with pre-configured dashboards and alerts.</p>
+<p>This closes a long-standing gap: you now get both internal metrics <em>and</em> external availability checks from a single platform.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="grafana-v11-tempo-20--more-flexible-alerting">Grafana v11, Tempo 2.0 &amp; More Flexible Alerting<a href="https://kubrix.io/blog/kubriX-7.0-released#grafana-v11-tempo-20--more-flexible-alerting" class="hash-link" aria-label="Direct link to Grafana v11, Tempo 2.0 &amp; More Flexible Alerting" title="Direct link to Grafana v11, Tempo 2.0 &amp; More Flexible Alerting">​</a></h3>
+<ul>
+<li><strong>Grafana 11.4</strong> with a new plugin syntax and updated dashboards</li>
+<li><strong>Tempo 2.0</strong> for distributed tracing - with updated configuration options</li>
+<li><strong>Loki</strong> topology improvements and updated scalable deployment</li>
+<li><strong>More flexible Grafana alert routing</strong>: alert rules are now simpler to define and can be fully managed in team-onboarding values - no more scattered configs</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="k8s-monitoring-v4">k8s-monitoring v4<a href="https://kubrix.io/blog/kubriX-7.0-released#k8s-monitoring-v4" class="hash-link" aria-label="Direct link to k8s-monitoring v4" title="Direct link to k8s-monitoring v4">​</a></h3>
+<p>The underlying Kubernetes monitoring chart has been upgraded to <strong>v4</strong>, bringing new features, improved stability, and a dedicated <code>prometheus-operator-crds</code> app to cleanly separate CRD management from the monitoring stack.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-backstage-permissions-policies--better-grafana-integration">🎭 Backstage: Permissions, Policies &amp; Better Grafana Integration<a href="https://kubrix.io/blog/kubriX-7.0-released#-backstage-permissions-policies--better-grafana-integration" class="hash-link" aria-label="Direct link to 🎭 Backstage: Permissions, Policies &amp; Better Grafana Integration" title="Direct link to 🎭 Backstage: Permissions, Policies &amp; Better Grafana Integration">​</a></h2>
+<p>kubriX 7.0.0 lays the groundwork for <strong>fine-grained Backstage permission control</strong>:</p>
+<ul>
+<li>Permission and conditional policies are now configurable - giving platform teams control over who can do what in the self-service portal</li>
+<li>The <strong>Grafana proxy</strong> now uses a sensible internal URL default, reducing manual configuration</li>
+<li>Global variables for catalog URLs make multi-cluster setups cleaner and less error-prone</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-ha-for-everything">🏆 HA for Everything<a href="https://kubrix.io/blog/kubriX-7.0-released#-ha-for-everything" class="hash-link" aria-label="Direct link to 🏆 HA for Everything" title="Direct link to 🏆 HA for Everything">​</a></h2>
+<p>kubriX Prime customers get high availability extended to even more platform components in 7.0.0:</p>
+<ul>
+<li><strong>CloudNativePG</strong> HA configuration</li>
+<li><strong>Crossplane</strong> and Crossplane provider HA</li>
+<li><strong>Keycloak</strong> HA</li>
+<li><strong>Kyverno</strong> HA</li>
+<li><strong>External Secrets Operator</strong> HA</li>
+<li><strong>k8s-monitoring v4</strong> HA settings</li>
+</ul>
+<p>Combined with the HA work from kubriX 6.0.0, this means virtually every critical platform service now has a production-grade HA configuration available out of the box.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-other-upgrades">🔄 Other Upgrades<a href="https://kubrix.io/blog/kubriX-7.0-released#-other-upgrades" class="hash-link" aria-label="Direct link to 🔄 Other Upgrades" title="Direct link to 🔄 Other Upgrades">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="multi-cluster--velero-backup-for-spoke-clusters">Multi-Cluster &amp; Velero Backup for Spoke Clusters<a href="https://kubrix.io/blog/kubriX-7.0-released#multi-cluster--velero-backup-for-spoke-clusters" class="hash-link" aria-label="Direct link to Multi-Cluster &amp; Velero Backup for Spoke Clusters" title="Direct link to Multi-Cluster &amp; Velero Backup for Spoke Clusters">​</a></h3>
+<ul>
+<li><strong>Velero backup</strong> is now configurable for spoke clusters - data protection that follows your workloads across every cluster</li>
+<li><strong>Cluster-specific values files</strong> for spoke-applications give more flexibility in managing multi-cluster setups</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mimir--loki-authentication">Mimir &amp; Loki Authentication<a href="https://kubrix.io/blog/kubriX-7.0-released#mimir--loki-authentication" class="hash-link" aria-label="Direct link to Mimir &amp; Loki Authentication" title="Direct link to Mimir &amp; Loki Authentication">​</a></h3>
+<p>Mimir and Loki now support <strong>tenant credentials stored in OpenBao</strong> - making the observability stack more secure and ready for multi-tenant production environments.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="e2e-testing-with-playwright">E2E Testing with Playwright<a href="https://kubrix.io/blog/kubriX-7.0-released#e2e-testing-with-playwright" class="hash-link" aria-label="Direct link to E2E Testing with Playwright" title="Direct link to E2E Testing with Playwright">​</a></h3>
+<p>The kubriX Prime CI pipeline now runs <strong>Playwright end-to-end tests</strong>, catching regressions across the full platform before they ever reach you.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-kubrix-700-matters">Why kubriX 7.0.0 Matters<a href="https://kubrix.io/blog/kubriX-7.0-released#why-kubrix-700-matters" class="hash-link" aria-label="Direct link to Why kubriX 7.0.0 Matters" title="Direct link to Why kubriX 7.0.0 Matters">​</a></h2>
+<p>This release is about making principled choices:</p>
+<ul>
+<li><strong>Open-source where it counts</strong> →  OpenBao over a BSL-licensed Vault</li>
+<li><strong>Better defaults</strong> →  Traefik, blackbox probing, HA everywhere</li>
+<li><strong>Stronger operations</strong> →  flexible alerting, Grafana v11, Tempo 2.0</li>
+<li><strong>Enterprise-ready resilience</strong> →  HA for every Prime component</li>
+</ul>
+<p>kubriX 7.0.0 is the most production-ready release we've shipped yet.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="upgrade-to-kubrix-700">Upgrade to kubriX 7.0.0<a href="https://kubrix.io/blog/kubriX-7.0-released#upgrade-to-kubrix-700" class="hash-link" aria-label="Direct link to Upgrade to kubriX 7.0.0" title="Direct link to Upgrade to kubriX 7.0.0">​</a></h2>
+<p>Already a <strong>kubriX Prime</strong> customer?
+kubriX 7.0.0 is available via your Git update channel. Please review the breaking changes and migration runbooks before upgrading, or reach out to kubriX support for guided assistance.</p>
+<p>New to kubriX?
+Let's talk about how to build an <strong>internal developer platform that's open, resilient, and ready for production</strong>.</p>
+<p><strong>kubriX 7.0.0 - open source all the way down.</strong> 🚀</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[When 2 CPUs of “Nothing” Turned Into a Deep Mimir Lesson]]></title>
             <link>https://kubrix.io/blog/mimir-store-gateway-high-cpu-troubleshooting</link>
