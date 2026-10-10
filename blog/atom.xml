@@ -2,11 +2,106 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kubrix.io/blog</id>
     <title>kubriX IDP Blog</title>
-    <updated>2026-05-12T00:00:00.000Z</updated>
+    <updated>2026-10-10T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kubrix.io/blog"/>
     <subtitle>kubriX IDP Blog</subtitle>
     <icon>https://kubrix.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[kubriX 8.0.0 - More Self-Service, Less Platform Toil]]></title>
+        <id>https://kubrix.io/blog/kubriX-8.0-released</id>
+        <link href="https://kubrix.io/blog/kubriX-8.0-released"/>
+        <updated>2026-10-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A developer platform creates value when teams can get things done without waiting for someone else.]]></summary>
+        <content type="html"><![CDATA[<p>A developer platform creates value when teams can get things done without waiting for someone else.</p>
+<p><strong>kubriX 8.0.0</strong> takes another step in that direction: pull request preview environments, Kubernetes access through Backstage, automated catalog discovery, and more self-service team onboarding.</p>
+<p>Alongside these kubriX Prime capabilities, the release updates core platform components and improves the automation we use to validate and maintain kubriX.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-preview-environments-for-pull-requests">🔀 Preview Environments for Pull Requests<a href="https://kubrix.io/blog/kubriX-8.0-released#-preview-environments-for-pull-requests" class="hash-link" aria-label="Direct link to 🔀 Preview Environments for Pull Requests" title="Direct link to 🔀 Preview Environments for Pull Requests">​</a></h2>
+<p>kubriX Prime now supports <strong>preview environments driven by application pull requests</strong>, using Argo CD ApplicationSets.</p>
+<p>Platform teams define the defaults during team onboarding. Application teams can adapt them through their application configuration:</p>
+<ul>
+<li>Select which pull request labels trigger preview environments</li>
+<li>Configure reconciliation intervals</li>
+<li>Choose the Helm values files used for preview deployments</li>
+<li>Override team defaults for individual applications</li>
+</ul>
+<p>This gives teams a dedicated environment to review and test changes before merging them.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-kubernetes-access-through-backstage">🔑 Kubernetes Access Through Backstage<a href="https://kubrix.io/blog/kubriX-8.0-released#-kubernetes-access-through-backstage" class="hash-link" aria-label="Direct link to 🔑 Kubernetes Access Through Backstage" title="Direct link to 🔑 Kubernetes Access Through Backstage">​</a></h2>
+<p>A new kubriX Prime self-service template provides <strong>kubectl access through Keycloak OIDC authentication</strong>, scoped by Kubernetes RBAC.</p>
+<p>Developers can use the portal to obtain access to the clusters and namespaces their role permits. Platform teams retain control through the existing identity and authorization model.</p>
+<p>A common developer request becomes a repeatable self-service workflow.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-a-catalog-that-follows-your-deployments">🗂️ A Catalog That Follows Your Deployments<a href="https://kubrix.io/blog/kubriX-8.0-released#%EF%B8%8F-a-catalog-that-follows-your-deployments" class="hash-link" aria-label="Direct link to 🗂️ A Catalog That Follows Your Deployments" title="Direct link to 🗂️ A Catalog That Follows Your Deployments">​</a></h2>
+<p>Keeping a developer catalog up to date should not require maintaining the same application information in several places.</p>
+<p>kubriX Prime now <strong>automatically discovers team applications and hub-and-spoke platform applications</strong> and brings them into the Backstage catalog.</p>
+<p>This reduces manual registration and keeps the portal closer to what is actually deployed through Argo CD.</p>
+<p>For developers, that means easier discovery. For platform teams, it means less catalog maintenance.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-team-onboarding-through-gitops">👥 Team Onboarding Through GitOps<a href="https://kubrix.io/blog/kubriX-8.0-released#-team-onboarding-through-gitops" class="hash-link" aria-label="Direct link to 👥 Team Onboarding Through GitOps" title="Direct link to 👥 Team Onboarding Through GitOps">​</a></h2>
+<p>The new <strong>Prime team-onboarding scaffolder</strong> brings configuration and delivery credential provisioning into a single workflow.</p>
+<ul>
+<li>Team configuration is stored in individual team files</li>
+<li>Onboarding creates a pull request for platform-team review</li>
+<li>Argo CD ApplicationSet and Kargo credentials are provisioned as part of the workflow</li>
+</ul>
+<p>Teams get a clearer path onto the platform, while platform engineers keep changes reviewable through GitOps.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-observability-with-clearer-ownership">📊 Observability With Clearer Ownership<a href="https://kubrix.io/blog/kubriX-8.0-released#-observability-with-clearer-ownership" class="hash-link" aria-label="Direct link to 📊 Observability With Clearer Ownership" title="Direct link to 📊 Observability With Clearer Ownership">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="centralized-grafana-folder-permissions">Centralized Grafana Folder Permissions<a href="https://kubrix.io/blog/kubriX-8.0-released#centralized-grafana-folder-permissions" class="hash-link" aria-label="Direct link to Centralized Grafana Folder Permissions" title="Direct link to Centralized Grafana Folder Permissions">​</a></h3>
+<p>kubriX Prime now manages <strong>Grafana dashboard folder visibility and permissions centrally</strong>.</p>
+<p>Platform teams can define which shared folders are available to which teams. Team memberships are synchronized, reducing separate access-management work in Grafana.</p>
+<p>Shared dashboards become easier to govern as more teams join the platform.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="crossplane-monitoring">Crossplane Monitoring<a href="https://kubrix.io/blog/kubriX-8.0-released#crossplane-monitoring" class="hash-link" aria-label="Direct link to Crossplane Monitoring" title="Direct link to Crossplane Monitoring">​</a></h3>
+<p>A new <strong>Crossplane metrics dashboard and PodMonitor</strong> provide visibility into controller metrics and reconciliation activity.</p>
+<p>Grafana metrics collection is also enabled in the Prime configuration, extending monitoring of the platform itself.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="loki-multi-tenancy">Loki Multi-Tenancy<a href="https://kubrix.io/blog/kubriX-8.0-released#loki-multi-tenancy" class="hash-link" aria-label="Direct link to Loki Multi-Tenancy" title="Direct link to Loki Multi-Tenancy">​</a></h3>
+<p>kubriX Prime enables <strong>Loki multi-tenancy</strong>, supporting separation of log data by tenant alongside the existing authentication integration.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-expanded-hub-and-spoke-validation">☁️ Expanded Hub-and-Spoke Validation<a href="https://kubrix.io/blog/kubriX-8.0-released#%EF%B8%8F-expanded-hub-and-spoke-validation" class="hash-link" aria-label="Direct link to ☁️ Expanded Hub-and-Spoke Validation" title="Direct link to ☁️ Expanded Hub-and-Spoke Validation">​</a></h2>
+<p>kubriX 8.0.0 extends the <strong>Azure AKS and MetalStack hub-and-spoke demo and test workflows</strong>.</p>
+<p>The automation covers provisioning, cluster registration, platform installation, and teardown. This helps us validate multi-cluster scenarios beyond the local Kubernetes environments used in our regular CI pipeline.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-updated-platform-foundations">🔄 Updated Platform Foundations<a href="https://kubrix.io/blog/kubriX-8.0-released#-updated-platform-foundations" class="hash-link" aria-label="Direct link to 🔄 Updated Platform Foundations" title="Direct link to 🔄 Updated Platform Foundations">​</a></h2>
+<p>The release updates components across delivery, identity, security, and observability:</p>
+<ul>
+<li><strong>Argo CD 3.5</strong></li>
+<li><strong>Grafana 13</strong></li>
+<li><strong>Tempo 3</strong></li>
+<li><strong>Keycloak 26.7.4</strong></li>
+<li><strong>Crossplane provider-keycloak 3</strong></li>
+<li><strong>Crossplane provider-vault 4</strong></li>
+</ul>
+<p>Kargo, CloudNativePG, Kyverno, External Secrets, and other platform components also receive updates.</p>
+<p>As with any major release, customers maintaining their own integrations or configuration overrides should review the relevant migration notes before upgrading.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-better-validation-and-maintenance">🧪 Better Validation and Maintenance<a href="https://kubrix.io/blog/kubriX-8.0-released#-better-validation-and-maintenance" class="hash-link" aria-label="Direct link to 🧪 Better Validation and Maintenance" title="Direct link to 🧪 Better Validation and Maintenance">​</a></h2>
+<p>The Prime end-to-end test suite now covers more platform features, role-based access, team onboarding, KubeVirt, and vCluster workflows.</p>
+<p>We have also improved shared pipeline automation:</p>
+<ul>
+<li>Cached Backstage authentication is validated before reuse</li>
+<li>Parallel test jobs use isolated repository names</li>
+<li>Playwright test images stay aligned with the npm dependency</li>
+<li>Vulnerability checks detect newly introduced CVEs and GHSAs</li>
+</ul>
+<p>Prime adds vulnerability assessment tooling, release vulnerability comparisons, and dependency preflight checks for backports.</p>
+<p>These improvements strengthen the checks behind each release and support ongoing platform maintenance.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-kubrix-800-matters">Why kubriX 8.0.0 Matters<a href="https://kubrix.io/blog/kubriX-8.0-released#why-kubrix-800-matters" class="hash-link" aria-label="Direct link to Why kubriX 8.0.0 Matters" title="Direct link to Why kubriX 8.0.0 Matters">​</a></h2>
+<p>This release makes everyday platform workflows easier to use and maintain:</p>
+<ul>
+<li><strong>Faster feedback</strong> through pull request preview environments</li>
+<li><strong>More developer autonomy</strong> through self-service Kubernetes access</li>
+<li><strong>Less manual maintenance</strong> through automated catalog discovery</li>
+<li><strong>Clearer ownership</strong> through GitOps team onboarding and Grafana permissions</li>
+<li><strong>Broader validation</strong> through extended end-to-end and multi-cluster testing</li>
+</ul>
+<p>The result is a platform that gives development teams more autonomy while keeping configuration and access under platform-team control.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="upgrade-to-kubrix-800">Upgrade to kubriX 8.0.0<a href="https://kubrix.io/blog/kubriX-8.0-released#upgrade-to-kubrix-800" class="hash-link" aria-label="Direct link to Upgrade to kubriX 8.0.0" title="Direct link to Upgrade to kubriX 8.0.0">​</a></h2>
+<p>Already a <strong>kubriX Prime</strong> customer?</p>
+<p>Please review the <a href="https://github.com/suxess-it/kubriX/blob/v8.0.0/CHANGELOG.md" target="_blank" rel="noopener noreferrer">kubriX 8.0.0 changelog</a> before upgrading, especially if you use custom Helm charts, Grafana plugins, Keycloak integrations, Tempo configuration, or Crossplane managed resources.</p>
+<p><strong>ExternalDNS annotations also need attention:</strong> the default prefix changes from <code>external-dns.alpha.kubernetes.io/</code> to <code>external-dns.kubernetes.io/</code>. Temporary compatibility allows migration one ingress at a time; the changelog documents the migration deadline.</p>
+<p>Reach out to kubriX support for assistance with planning and validating your upgrade.</p>
+<p>New to kubriX?</p>
+<p>Explore the <a href="https://github.com/suxess-it/kubriX/releases/tag/v8.0.0" target="_blank" rel="noopener noreferrer">release</a>, or let's talk about how to give your teams an <strong>internal developer platform with practical self-service and clear operational ownership</strong>.</p>
+<p><strong>kubriX 8.0.0 - more self-service, less platform toil.</strong> 🚀</p>]]></content>
+        <author>
+            <name>Johannes Kleinlercher</name>
+            <uri>https://github.com/jkleinlercher</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Why Platform Teams Should Not Spend Days Integrating Security Patches]]></title>
         <id>https://kubrix.io/blog/kubrix-security-patches</id>
